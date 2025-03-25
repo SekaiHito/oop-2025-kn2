@@ -6,3 +6,4 @@
 2. Нажміть по ній ПКМ ––> Open Git Bash here
 3. Введіть у Git Bash команду: **"git clone https://github.com/SekaiHito/oop-2025-kn2.git"**
 
+![Suspicious cat](https://tenor.com/NiGUt9RMqs.gif)
