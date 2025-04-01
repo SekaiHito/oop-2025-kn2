@@ -14,4 +14,4 @@
    git clone https://github.com/SekaiHito/oop-2025-kn2.git
 
 ![Image](https://github.com/user-attachments/assets/3711c614-96be-4b83-bd56-a8e4f0ae0169)
-![Image](https://github.com/user-attachments/assets/https://www.icegif.com/wp-content/uploads/2023/01/icegif-162.gif)
+![Image](https://github.com/SekaiHito/oop-2025-kn2/blob/master/icegif-162.gif)
