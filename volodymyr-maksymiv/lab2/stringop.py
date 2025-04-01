@@ -1,4 +1,4 @@
-s = "Hey there! what should this string be?"
+s = "Strings are awesome!"
 # Length should be 20
 print("Length of s = %d" % len(s))
 
@@ -9,8 +9,8 @@ print("The first occurrence of the letter a = %d" % s.index("a"))
 print("a occurs %d times" % s.count("a"))
 
 # Slicing the string into bits
-print("The first five characters are '%s'" % s[:5]) # Start to 5
-print("The next five characters are '%s'" % s[5:10]) # 5 to 10
+print("The first five characters are '%s'" % s[:6]) # Start to 5
+print("The next five characters are '%s'" % s[6:10]) # 5 to 10
 print("The thirteenth character is '%s'" % s[12]) # Just number 12
 print("The characters with odd index are '%s'" %s[1::2]) #(0-based indexing)
 print("The last five characters are '%s'" % s[-5:]) # 5th-from-last to end
