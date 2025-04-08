@@ -35,7 +35,7 @@
 [[1]](lesiv-roman/lab2/basic-operators.py)
 7. Навчився основам форматування стрічок і текстового виводу.
 [[4]](lesiv-roman/lab2/string-formatting.py)
-[[5]](lesiv-roman/lab2/basic-string-operations.py)
+[[5]](/basic-string-operations.py)
 8. Освоїв роботу зі стрічками як зі списками (“Lists”).
 [[3]](lesiv-roman/lab2/lists.py)
 9. Ознайомився з типом даних “словник” (“Dictionary”). Розв’язав
