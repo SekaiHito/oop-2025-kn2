@@ -21,60 +21,62 @@
 
 4.Розв'язав завдання.Навчився здійснювати базові операції та приведення типів.
 
-mystring = "hello"
+    mystring = "hello"
 
-myfloat = 10.0
+    myfloat = 10.0
 
-myint = 20
+    myint = 20
 
-if mystring == "hello":
+    if mystring == "hello":
 
-    print("String: %s" % mystring)
+        print("String: %s" % mystring)
 
-if isinstance(myfloat, float) and myfloat 
-== 10.0:
-    print("Float: %f" % myfloat)
+    if isinstance(myfloat, float) and myfloat 
+    == 10.0:
+        print("Float: %f" % myfloat)
 
-if isinstance(myint, int) and myint == 20:
+    if isinstance(myint, int) and myint == 20:
 
-    print("Integer: %d" % myint)
+        print("Integer: %d" % myint)
 
 
 5.Ознайомився із типом "List".Розв'язав приклад.
-numbers = []
 
-strings = []
+    numbers = []
 
-names = ["John", "Eric", "Jessica"]
+    strings = []
 
-second_name = None
+    names = ["John", "Eric", "Jessica"]
 
-print(numbers)
+    second_name = None
 
-print(strings)
+    print(numbers)
 
-print("The second name on the names list is %s" % second_name)
+    print(strings)
+
+    print("The second name on the names list is %s" % second_name)
 
 6.Ознайомився із основними операторами.
-x = object()
 
-y = object()
+    x = object()
 
-x_list = [x]
+    y = object()
 
-y_list = [y]
+    x_list = [x]
 
-big_list = []
+    y_list = [y]
 
-print("x_list contains %d objects" % len(x_list))
-print("y_list contains %d objects" % len(y_list))
-print("big_list contains %d objects" % len(big_list))
+    big_list = []
 
-if x_list.count(x) == 10 and y_list.count(y) == 10:
+    print("x_list contains %d objects" % len(x_list))
+    print("y_list contains %d objects" % len(y_list))
+    print("big_list contains %d objects" % len(big_list))
+
+    if x_list.count(x) == 10 and y_list.count(y) == 10:
 
     print("Almost there...")
 
-if big_list.count(x) == 10 and big_list.count(y) == 10:
+    if big_list.count(x) == 10 and big_list.count(y) == 10:
 
     print("Great!")
 
@@ -83,17 +85,18 @@ if big_list.count(x) == 10 and big_list.count(y) == 10:
 
 9.Ознайомитися з типом даних “словник” (“Dictionary”). Розв’язати
 завдання.Розв'язав завдання.Ознайомився із 'словником'
-phonebook = {  
-    "John" : 938477566,
-    "Jack" : 938377264,
-    "Jill" : 947662781
-}  
 
-if "Jake" in phonebook:  
-    print("Jake is listed in the phonebook.")
+    phonebook = {  
+        "John" : 938477566,
+        "Jack" : 938377264,
+        "Jill" : 947662781
+    }  
+
+    if "Jake" in phonebook:  
+       print("Jake is listed in the phonebook.")
     
-if "Jill" not in phonebook:      
-    print("Jill is not listed in the phonebook.")
+    if "Jill" not in phonebook:      
+        print("Jill is not listed in the phonebook.")
 ## Висновки
 
 Під час виконання цієї лабораторної роботи ознайомився та згадав базові основи синтаксису Пайтон.Також ознайомився із
