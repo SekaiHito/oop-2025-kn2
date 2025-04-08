@@ -1,0 +1,9 @@
+a = 5
+b = 3
+sum_ab = a + b
+diff_ab = a - b
+mul_ab = a * b
+div_ab = a / b
+int_div_ab = a // b
+mod_ab = a % b
+exp_ab = a ** b
