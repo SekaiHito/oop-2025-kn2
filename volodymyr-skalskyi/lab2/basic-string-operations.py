@@ -15,7 +15,6 @@ print(f"\nМетоди рядків:")
 print(f"Оригінал: '{text}'")
 print(f"Верхній регістр: '{text.upper()}'")
 print(f"Нижній регістр: '{text.lower()}'")
-print(f"Перша літера велика: '{text.capitalize()}'")
 print(f"Видалення пробілів: '{text.strip()}'")
 
 # Пошук та заміна
@@ -31,10 +30,3 @@ words = "Python,Java,C++,JavaScript"
 print(f"\nРозділення рядка:")
 print(f"Оригінал: {words}")
 print(f"Список слів: {words.split(',')}")
-
-# Перевірка рядка
-print(f"\nПеревірка рядка:")
-print(f"'Python'.isalpha(): {'Python'.isalpha()}")
-print(f"'123'.isdigit(): {'123'.isdigit()}")
-print(f"'Python123'.isalnum(): {'Python123'.isalnum()}")
-print(f"'   '.isspace(): {'   '.isspace()}") 
