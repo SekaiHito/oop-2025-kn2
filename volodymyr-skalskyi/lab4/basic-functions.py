@@ -21,16 +21,6 @@ def add_numbers(a, b):
     """Функція, яка додає два числа"""
     return a + b
 
-# Функція з кількома return
-def get_number_type(num):
-    """Функція, яка визначає тип числа"""
-    if num > 0:
-        return "додатне"
-    elif num < 0:
-        return "від'ємне"
-    else:
-        return "нуль"
-
 # Демонстрація виклику функцій
 print("\n1. Виклик функції без параметрів:")
 greet()
@@ -45,19 +35,3 @@ greet_person_with_title("Марія", "пані")
 print("\n4. Виклик функції, що повертає значення:")
 result = add_numbers(5, 3)
 print(f"5 + 3 = {result}")
-
-print("\n5. Виклик функції з кількома return:")
-print(f"Число 10 є {get_number_type(10)}")
-print(f"Число -5 є {get_number_type(-5)}")
-print(f"Число 0 є {get_number_type(0)}")
-
-# Демонстрація області видимості змінних
-print("\n6. Демонстрація області видимості змінних:")
-x = 10  # Глобальна змінна
-
-def demonstrate_scope():
-    x = 20  # Локальна змінна
-    print(f"Локальна змінна x = {x}")
-
-demonstrate_scope()
-print(f"Глобальна змінна x = {x}") 
