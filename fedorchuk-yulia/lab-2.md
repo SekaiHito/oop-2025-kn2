@@ -23,8 +23,8 @@ string="This is str"
 integer=24
 a_float=2.5
 
-print(type(string))
-print(type(integer))
+print(type(string)) # str
+print(type(integer)) 
 print(type(a_float))
 ```
 2. Навчилися здійснювати базові операції та приведення типів. Написала програму для повернення результату математичних операцій
