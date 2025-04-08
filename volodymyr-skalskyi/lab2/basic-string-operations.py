@@ -15,7 +15,6 @@ print(f"\nМетоди рядків:")
 print(f"Оригінал: '{text}'")
 print(f"Верхній регістр: '{text.upper()}'")
 print(f"Нижній регістр: '{text.lower()}'")
-print(f"Перша літера велика: '{text.capitalize()}'")
 print(f"Видалення пробілів: '{text.strip()}'")
 
 # Пошук та заміна
