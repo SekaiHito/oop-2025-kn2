@@ -1,2 +1,4 @@
 class Alfa:
-    name = ""
+    
+    def __init__(self,name,lname,pet,car):
+        pass
