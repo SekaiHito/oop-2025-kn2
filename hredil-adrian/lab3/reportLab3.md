@@ -1,0 +1,121 @@
+## МІНІСТЕРСТВО ОСВІТИ ТА НАУКИ
+
+# Львівський національний університет ветеринарії і біотехнологій імені С.З.Ґжицького
+
+# Звіт
+
+**про виконання лаборатоної роботи №3**
+**з дисципліни "Об'єктно-орієнтоване програмування"**
+**на тему** 
+**Вивчення циклів та розгалужень**
+
+Виконав: студент групи КН-21 Греділь Адріан
+
+Перевірив: доц. А.Татомир
+
+# Львів 2025
+
+Мета: Метою роботи є вивчення основ розробки додатків на Python 3.
+
+Хід роботи
+
+1. Використав if elif else для реалізації розгалуження
+
+```py
+def max_of_four(a, b, c, d):
+    if a >= b and a >= c and a >= d:
+        return a
+    elif b >= a and b >= c and b >= d:
+        return b
+    elif c >= a and c >= b and c >= d:
+        return c
+    else:
+        return d
+
+x = int(input())
+y = int(input())
+z = int(input())
+w = int(input())
+
+print(max_of_four(x, y, z, w))
+```
+
+2. Реалізував розгалуження з умовнипми операторами
+
+```py
+x = int(input())
+
+if x > 0:
+    print("Додатнє")
+elif x < 0:
+    print("Від'ємне")
+else:
+    print("Нуль")
+```
+
+3. Познайомився з операторами булевої логіки в Python 3.
+
+```py
+a = int(input())
+b = int(input())
+
+if a > 0 and b > 0:
+    print("Обидва додатні")
+elif a > 0 or b > 0:
+    print("Хоча б одне додатнє")
+else:
+    print("Жодне не є додатнім")
+
+if not a > 0:
+    print("a не є додатнім")
+```
+4. Згенерував більш складнішу програму яка використовує умовні розгалуєення
+```py
+age = int(input())
+has_ticket = input() == "так"
+is_vip = input() == "так"
+
+if (age >= 18 and has_ticket) or is_vip:
+    print("Вхід дозволено")
+else:
+    print("Вхід заборонено")
+```
+
+
+5. Опанував методи роботи з циклами. Навчився визначати доцільність застосування різних типів циклів залежно від поставленої задачі.
+```py
+for i in range(1, 6):
+    print(i)
+
+n = 1
+while n <= 5:
+    print(n)
+    n += 1
+```
+6. Розв’язати приклади згідно виданих завдань.
+
+**6.1 Робота з операторами**
+```py 
+    x = object()
+y = object()
+
+# TODO: change this code
+x_list = [x] * 10
+y_list = [y] * 10
+big_list = x_list + y_list
+
+print("x_list contains %d objects" % len(x_list))
+print("y_list contains %d objects" % len(y_list))
+print("big_list contains %d objects" % len(big_list))
+
+# testing code
+if x_list.count(x) == 10 and y_list.count(y) == 10:
+    print("Almost there...")
+if big_list.count(x) == 10 and big_list.count(y) == 10:
+    print("Great!")
+```
+
+
+## Висновок:
+
+У ході виконання лабораторної робораторної робои я навчився використовувати умовні оператори if, elif, else для реалізації розгалужень, а також логічні оператори and, or, not для побудови складних умов. Опанував основи роботи з циклами for та while, навчився визначати доцільність їх використання у різних ситуаціях.
