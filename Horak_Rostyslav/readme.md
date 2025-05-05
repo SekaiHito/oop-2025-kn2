@@ -28,4 +28,7 @@
    [string.py](string.py)
 5. Виконав завдання базовими функціями append, inser: 
    [list_example.py](list_example.py)
+6. Приклад роботи зі списками імен та віків.
+Виконано завдання на роботу зі списками імен і віків.Код можна знайти в файлі:
+[name_age_lists.py](name_age_lists.py)
 
