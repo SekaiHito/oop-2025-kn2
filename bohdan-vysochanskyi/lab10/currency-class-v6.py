@@ -6,19 +6,16 @@
 
     @property
     def rate(self):
-        """Getter — повертає курс"""
         return self._rate
 
     @rate.setter
     def rate(self, value):
-        """Setter — встановлює курс з перевіркою"""
         if value <= 0:
             raise ValueError("Курс повинен бути додатним числом.")
         self._rate = value
 
     @rate.deleter
     def rate(self):
-        """Deleter — обнуляє курс"""
         print(f"Курс для {self.original} → {self.converted} було видалено.")
         self._rate = None
 

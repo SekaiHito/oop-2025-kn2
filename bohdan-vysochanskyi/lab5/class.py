@@ -12,16 +12,16 @@ class Vehicle:
 
 # Створення першого транспортного засобу
 car1 = Vehicle()
-car1.name = "Fer"
-car1.color = "червоний"
-car1.kind = "кабріолет"
+car1.name = "BMW"
+car1.color = "Чорний"
+car1.kind = "Седан"
 car1.value = 60000.00
 
 # Створення другого транспортного засобу
 car2 = Vehicle()
-car2.name = "Jump"
-car2.color = "синій"
-car2.kind = "фургон"
+car2.name = "Ford"
+car2.color = "Сірий"
+car2.kind = "Універсал"
 car2.value = 10000.00
 
 # Вивід опису обʼєктів

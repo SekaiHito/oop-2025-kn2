@@ -1,6 +1,6 @@
 ﻿number = 25
 second_number = 10
-first_array = [1, 2, 3]
+first_array = [2, 1, 4]
 second_array = [1, 2]
 
 if number > 15:
