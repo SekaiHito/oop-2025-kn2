@@ -24,4 +24,6 @@
    [task_data_types.py](task_data_types.py)
 3. Виконав завдання на базові операці: 
    [object_operations.py](object_operations.py)
+4. Виконав завдання на тип Strin:
+   [string.py](string.py)
 
