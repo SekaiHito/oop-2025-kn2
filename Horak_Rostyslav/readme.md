@@ -22,8 +22,4 @@
 1. Підключився до спільного репозиторію GIT групи КН-22СП  
 2. Виконав тестове завдання на типи даних:
    [task_data_types.py](task_data_types.py)
-```python
-name = "Ростислав"
-age = 20
-height = 1.94
-is_student = True
+
