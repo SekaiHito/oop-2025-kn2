@@ -22,4 +22,6 @@
 1. Підключився до спільного репозиторію GIT групи КН-22СП  
 2. Виконав тестове завдання на типи даних:
    [task_data_types.py](task_data_types.py)
+3. Виконав завдання на базові операці: 
+   [object_operations.py](object_operations.py)
 
