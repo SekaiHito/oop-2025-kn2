@@ -1,19 +1,23 @@
+﻿# Оголошення пустого списку
 numbers = []
 strings = []
-names = ["John", "Eric", "Jessica"]
 
-# write your code here
+# Список імен
+names = ["Іван", "Петро", "Jessica"]
+
+# Отримуємо друге ім’я (індексація з 0)
 second_name = names[1]
 
+# Додаємо числа до списку
 numbers.append(1)
 numbers.append(2)
 numbers.append(15)
 
-strings.append("string1")
-strings.append("string2")
+# Додаємо рядки до списку
+strings.append("Рядок 1")
+strings.append("Рядок 2 ")
 
-
-# this code should write out the filled arrays and the second name in the names list (Eric).
-print(numbers)
-print(strings)
-print("The second name on the names list is %s" % second_name)
+# Виводимо результати
+print("Список чисел:", numbers)
+print("Список рядків:", strings)
+print("Друге ім’я у списку імен — %s" % second_name)
