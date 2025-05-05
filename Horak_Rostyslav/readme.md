@@ -26,4 +26,6 @@
    [object_operations.py](object_operations.py)
 4. Виконав завдання на тип Strin:
    [string.py](string.py)
+5. Виконав завдання базовими функціями append, inser: 
+   [list_example.py](list_example.py)
 
