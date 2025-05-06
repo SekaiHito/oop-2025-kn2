@@ -32,10 +32,14 @@ else:
 
 ```py
 
-logged_in=False
-if not logged_in:
-    print("Будь ласка, увійдіть")  #або Будь ласка, увійдіть або нічого
+user_age = 20
+has_permission = user_age >= 18
 
+if has_permission:
+    print("Доступ дозволено")#Доступ дозволено
+
+else:
+    print("Доступ заборонено")  
 ```
 3. Опанували методи роботи з циклами
 
