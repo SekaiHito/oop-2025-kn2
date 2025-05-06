@@ -20,7 +20,7 @@
 3.Ознайомився із динамічною типізацію.
 
 4.Розв'язав завдання.Навчився здійснювати базові операції та приведення типів.
-
+```py
     mystring = "hello"
 
     myfloat = 10.0
@@ -31,14 +31,13 @@
 
         print("String: %s" % mystring)
 
-    if isinstance(myfloat, float) and myfloat 
-    == 10.0:
+    if isinstance(myfloat, float) and myfloat == 10.0:
         print("Float: %f" % myfloat)
 
     if isinstance(myint, int) and myint == 20:
 
         print("Integer: %d" % myint)
-
+```
 
 5.Ознайомився із типом "List".Розв'язав приклад.
 
