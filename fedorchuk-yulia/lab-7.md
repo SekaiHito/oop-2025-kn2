@@ -61,9 +61,9 @@ emp_2 = Employee('Test', 'Employee', 60000)
 
 Employee.set_raise_amt(1.05)
 
-print(Employee.raise_amt)
-print(emp_1.raise_amt)
-print(emp_2.raise_amt)
+print(Employee.raise_amt) #1.05
+print(emp_1.raise_amt) #1.05
+print(emp_2.raise_amt) #1.05
 
 emp_str_1 = 'John-Doe-70000'
 emp_str_2 = 'Steve-Smith-30000'
@@ -74,13 +74,13 @@ first, last, pay = emp_str_1.split('-')
 #new_emp_1 = Employee(first, last, pay)
 new_emp_1 = Employee.from_string(emp_str_1)
 
-print(new_emp_1.email)
-print(new_emp_1.pay)
+print(new_emp_1.email) #John.Doe@email.com
+print(new_emp_1.pay)#70000
 
 import datetime
 my_date = datetime.date(2016, 7, 11)
 
-print(Employee.is_workday(my_date))
+print(Employee.is_workday(my_date)) #True
 
 ```
 
