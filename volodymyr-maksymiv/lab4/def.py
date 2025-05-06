@@ -11,4 +11,13 @@ def name_the_benefits_of_functions():
     for benefit in list_of_benefits:
         print(build_sentence(benefit))
 
+def apply_to_list(func, data):
+    return [func(x) for x in data]
+
+def square(x):
+    return x * x
+
+numbers = [1, 2, 3, 4]
+print(apply_to_list(square, numbers))
+
 name_the_benefits_of_functions()
