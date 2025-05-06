@@ -4,9 +4,9 @@
 
 def debug(func):
     """Декоратор для відстеження викликів функцій"""
-    def wrapper(*args, **kwargs):
-        print(f"Виклик функції {func.__name__} з аргументами {args} та {kwargs}")
-        result = func(*args, **kwargs)
+    def wrapper(*args):
+        print(f"Виклик функції {func.__name__} з аргументами {args}")
+        result = func(*args)
         print(f"Результат: {result}")
         return result
     return wrapper
