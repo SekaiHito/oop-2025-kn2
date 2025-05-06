@@ -1,3 +1,4 @@
+```python
 integers = []
 words = []
 fruits = ["Apple", "Banana", "Cherry"]
