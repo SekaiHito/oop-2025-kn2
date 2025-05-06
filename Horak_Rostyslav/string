@@ -1,0 +1,4 @@
+person_info = ("Alice", "Smith", 120.50)
+message_template = "Greetings, %s %s! Your account balance is $%.2f."
+
+print(message_template % person_info)
