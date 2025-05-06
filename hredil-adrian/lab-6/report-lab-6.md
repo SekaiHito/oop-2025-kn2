@@ -25,131 +25,135 @@
 Я набув навичок у створенні класів. Створив клас, який приймає кілька аргументів. На основі цих аргументів у конструкторі класу я створив набір атрибутів об'єкта, один з яких розраховується на основі інших.
 
 ```py
-class Car:
-    def __init__(self, brand, model, year, mileage):
-        self.brand = brand
-        self.model = model
+
+class Book:
+    def __init__(self, title, author, year, pages):
+        self.title = title
+        self.author = author
         self.year = year
-        self.mileage = mileage
+        self.pages = pages
         self.age = 2025 - self.year
 
     def display_info(self):
-        print(f"Марка: {self.brand}")
-        print(f"Модель: {self.model}")
+        print(f"Назва: {self.title}")
+        print(f"Автор: {self.author}")
         print(f"Рік випуску: {self.year}")
-        print(f"Пробіг: {self.mileage} км")
+        print(f"Кількість сторінок: {self.pages}")
         print(f"Вік: {self.age} років")
 
-my_car = Car("Toyota", "Corolla", 2015, 150000)
-my_car.display_info()
+my_book = Book("The Great Gatsby", "F. Scott Fitzgerald", 1925, 218)
+my_book.display_info()
+
 
 ```
 2. Я реалізував метод, який генерує опис об'єкта на основі його властивостей. Цей метод створює текст, що містить інформацію про об'єкт, використовуючи його атрибути.
 
 ```py
-class Car:
-    def __init__(self, brand, model, year, mileage):
-        self.brand = brand
-        self.model = model
+class Book:
+    def __init__(self, title, author, year, pages):
+        self.title = title
+        self.author = author
         self.year = year
-        self.mileage = mileage
+        self.pages = pages
         self.age = 2025 - self.year
 
     def generate_description(self):
-        return f"Це {self.year} року {self.brand} {self.model}. Пробіг: {self.mileage} км. Вік: {self.age} років."
+        return f"Це книга '{self.title}' авторства {self.author}, видана в {self.year} році. Кількість сторінок: {self.pages}. Вік: {self.age} років."
 
-my_car = Car("Toyota", "Corolla", 2015, 150000)
-description = my_car.generate_description()
+my_book = Book("The Great Gatsby", "F. Scott Fitzgerald", 1925, 218)
+description = my_book.generate_description()
 print(description)
+
 
 ```
 3. Я навчився створювати об'єкти на основі класу. Створив кілька об'єктів і викликав реалізований метод, використовуючи як об'єкти, так і сам клас. Це дозволило краще зрозуміти, як працювати з інстанціями класу та їх методами.
 
 ```py
-class Car:
-    def __init__(self, brand, model, year, mileage):
-        self.brand = brand
-        self.model = model
+class Book:
+    def __init__(self, title, author, year, pages):
+        self.title = title
+        self.author = author
         self.year = year
-        self.mileage = mileage
+        self.pages = pages
         self.age = 2025 - self.year
 
     def generate_description(self):
-        return f"Це {self.year} року {self.brand} {self.model}. Пробіг: {self.mileage} км. Вік: {self.age} років."
+        return f"Це книга '{self.title}' авторства {self.author}, видана в {self.year} році. Кількість сторінок: {self.pages}. Вік: {self.age} років."
 
-car1 = Car("Toyota", "Corolla", 2015, 150000)
-car2 = Car("Honda", "Civic", 2018, 120000)
-car3 = Car("Ford", "Focus", 2020, 80000)
 
-print(car1.generate_description())
-print(car2.generate_description())
-print(car3.generate_description())
+book1 = Book("The Great Gatsby", "F. Scott Fitzgerald", 1925, 218)
+book2 = Book("1984", "George Orwell", 1949, 328)
+book3 = Book("To Kill a Mockingbird", "Harper Lee", 1960, 281)
 
-print(Car.generate_description(car1))
-print(Car.generate_description(car2))
-print(Car.generate_description(car3))
+
+print(book1.generate_description())
+print(book2.generate_description())
+print(book3.generate_description())
+
 
 ```
 4. Я познайомився з поняттям змінної класу. Реалізував змінну класу, яка зберігає спільне значення для всіх об'єктів класу, та метод, який використовує цю змінну для виконання певних операцій, наприклад, підрахунку кількості створених об'єктів.
 
 ```py
-class Car:
-    total_cars = 0
+class Book:
+    total_books = 0
 
-    def __init__(self, brand, model, year, mileage):
-        self.brand = brand
-        self.model = model
+    def __init__(self, title, author, year, pages):
+        self.title = title
+        self.author = author
         self.year = year
-        self.mileage = mileage
+        self.pages = pages
         self.age = 2025 - self.year
-        Car.total_cars += 1
+        Book.total_books += 1
 
     def generate_description(self):
-        return f"Це {self.year} року {self.brand} {self.model}. Пробіг: {self.mileage} км. Вік: {self.age} років."
+        return f"Це книга '{self.title}' авторства {self.author}, видана в {self.year} році. Кількість сторінок: {self.pages}. Вік: {self.age} років."
 
     @classmethod
-    def get_total_cars(cls):
-        return f"Кількість створених автомобілів: {cls.total_cars}"
+    def get_total_books(cls):
+        return f"Кількість створених книг: {cls.total_books}"
 
-car1 = Car("Toyota", "Corolla", 2015, 150000)
-car2 = Car("Honda", "Civic", 2018, 120000)
+book1 = Book("The Great Gatsby", "F. Scott Fitzgerald", 1925, 218)
+book2 = Book("1984", "George Orwell", 1949, 328)
 
-print(car1.generate_description())
-print(car2.generate_description())
+print(book1.generate_description())
+print(book2.generate_description())
 
-print(Car.get_total_cars())
+print(Book.get_total_books())
+
 
 ```
 5. Я реалізував лічильник створених об'єктів за допомогою класу. Для цього використав змінну класу, яка автоматично збільшується кожного разу, коли створюється новий об'єкт. Це дозволило відстежувати кількість об'єктів, створених на основі класу.
 
 ```py
-class Car:
+class Book:
     counter = 0
 
-    def __init__(self, brand, model, year, mileage):
-        self.brand = brand
-        self.model = model
+    def __init__(self, title, author, year, pages):
+        self.title = title
+        self.author = author
         self.year = year
-        self.mileage = mileage
+        self.pages = pages
         self.age = 2025 - self.year
-        Car.counter += 1
+        Book.counter += 1
 
     def generate_description(self):
-        return f"Це {self.year} року {self.brand} {self.model}. Пробіг: {self.mileage} км. Вік: {self.age} років."
+        return f"Це книга '{self.title}' авторства {self.author}, видана в {self.year} році. Кількість сторінок: {self.pages}. Вік: {self.age} років."
 
     @classmethod
     def get_object_count(cls):
-        return f"Кількість створених автомобілів: {cls.counter}"
+        return f"Кількість створених книг: {cls.counter}"
 
-car1 = Car("Toyota", "Corolla", 2015, 150000)
-car2 = Car("Honda", "Civic", 2018, 120000)
-car3 = Car("Ford", "Focus", 2020, 80000)
+book1 = Book("The Great Gatsby", "F. Scott Fitzgerald", 1925, 218)
+book2 = Book("1984", "George Orwell", 1949, 328)
+book3 = Book("To Kill a Mockingbird", "Harper Lee", 1960, 281)
 
-print(car1.generate_description())
-print(car2.generate_description())
-print(car3.generate_description())
+print(book1.generate_description())
+print(book2.generate_description())
+print(book3.generate_description())
 
-print(Car.get_object_count())
+print(Book.get_object_count())
+
 
 ```
 ## Висновок:
