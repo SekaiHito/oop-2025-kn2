@@ -15,8 +15,7 @@
 ## Хід роботи
 
 Створив програми для демострації:
-   - [Перевантаження методів](method_overloading.py)
-   - [Магічні методи та перевизначення операторів](magic_methods.py)
+   - [Методи класу](bank_account.py)
    - [Декоратори](decorators.py)
    - [Getter'и, setter'и та deleter'и](properties.py)
    
