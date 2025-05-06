@@ -18,15 +18,15 @@
 2. Закріпив поняття параметрів та аргументів функції.Параметри (іноді ще називають формальними параметрами) — це змінні, які вказуються при визначенні функції. 
 Приклад із параметраими:
 ```py
-    def привітання(ім'я):
+def привітання(ім'я):
     print("Привіт,", ім'я)
 ```
 Приклад із аргументом:
-    привітання("Олена")
+привітання("Олена")
 
 3.Вивчив методи роботи з функціями, викликав функції, передав їх в якості параметрів у інші функції (“callback”).Приклад коду із такою функцією:
 ```py
-    def обчислити(число, операція):
+def обчислити(число, операція):
     return операція(число)
 
 def подвоїти(x):
@@ -35,24 +35,24 @@ def подвоїти(x):
 def відняти_один(x):
     return x - 1
 
-print(обчислити(4, подвоїти))       # Виведе 8
-print(обчислити(4, відняти_один))   # Виведе 3
+print(обчислити(4, подвоїти))  # Виведе 8
+print(обчислити(4, відняти_один))  # Виведе 3
 ```
 4.Розв'язав заданий приклад:
 ```py
-    def list_benefits():
+def list_benefits():
     return "More organized code", "More readable code", "Easier code reuse", "Allowing programmers to share and connect code together"
 
-#Modify this function to concatenate to each benefit - " is a benefit of functions!"
+# Modify this function to concatenate to each benefit - " is a benefit of functions!"
 def build_sentence(benefit):
     return "%s is a benefit of functions!" % benefit
-
 
 def name_the_benefits_of_functions():
     list_of_benefits = list_benefits()
     for benefit in list_of_benefits:
         print(build_sentence(benefit))
-name_the_benefits_of_functions()   
+
+name_the_benefits_of_functions()  
 ```
 ## Висновки
 Під час виконання цієї лабораторної роботи,вивчив що таке параметри та аргументи функції.Начився викликати функції.Розв'язав приклад.
