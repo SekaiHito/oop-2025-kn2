@@ -1,0 +1,18 @@
+```python
+integers = []
+words = []
+fruits = ["Apple", "Banana", "Cherry"]
+
+# write your code here
+integers.append(10)
+integers.append(20)
+integers.append(30)
+
+words.append("good")
+words.append("morning")
+
+third_fruit = fruits[2]
+
+print(integers)
+print(words)
+print("The third fruit on the fruits list is %s" % third_fruit)
