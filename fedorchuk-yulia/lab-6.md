@@ -34,6 +34,9 @@ class Employee:
 emp_1 = Employee('Corey', 'Schafer', 50000)
 emp_2 = Employee('Test', 'Employee', 60000)
 
+print(emp_1.email) #Corey.Schafer@email.com
+print(emp_2.pay) #60000
+
 ```
 
 ## Висновки
