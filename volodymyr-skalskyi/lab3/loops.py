@@ -34,22 +34,3 @@ for i in range(5):
         print("Пропускаємо 2")
         continue
     print(f"Число: {i}")
-
-# Демонстрація вкладених циклів
-print("\nДемонстрація вкладених циклів:")
-for i in range(3):
-    for j in range(3):
-        print(f"i={i}, j={j}")
-
-# Демонстрація циклу while з умовою
-print("\nДемонстрація циклу while з умовою:")
-number = 0
-while number < 10:
-    if number % 2 == 0:
-        print(f"Парне число: {number}")
-    number += 1
-
-# Демонстрація циклу for з enumerate
-print("\nДемонстрація циклу for з enumerate:")
-for index, fruit in enumerate(fruits):
-    print(f"Індекс {index}: {fruit}") 
