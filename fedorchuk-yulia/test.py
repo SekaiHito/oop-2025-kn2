@@ -1,26 +1,32 @@
-class Employee:
-    num_of_emp = 0
-    raise_amount = 2.03
-    def __init__(self, first, last, pay, nature):
-        self.first = first
-        self.last = last
-        self.email = first + '.' + last + '@email.com'
-        self.pay = pay
-        self.nature = nature
+class Love:
+    raise_of_love = 100
 
-        Employee.num_of_emp += 1
+    def __init__(self, first_love, last_love, pay_of_love):
+        self.first_love = first_love
+        self.last_love = last_love
+        self.email_of_love = f"{first_love}.{last_love}@it.is.love"
+        self.pay_of_love = pay_of_love
 
-    def fullname(self):
-        return '{} {}'.format(self.first, self.last)
-    def what_person(self):
-        return '{} {} {}'.format(self.first, self.last, self.nature)
-    def aplly_raise(self):
-        self.pay = int(self.pay * self.raise_amount)
+    def fulllove(self):
+        return f"{self.first_love} {self.last_love}"
 
-emp_1 = Employee('Yulia', 'Fedorchuk', 800, "kind")
-emp_2 = Employee('Lia', 'Mia', 9000, "good person")
+    def apply_raise_of_love(self):
+        self.pay_of_love = round(self.pay_of_love * self.raise_of_love, 2)
 
-print(emp_1.email) #Yulia.Fedorchuk@email.com
-print(emp_2.pay) #9000
-print(emp_1.what_person()) #Yulia Fedorchuk is kind
-print(Employee.num_of_emp)
+    def __repr__(self):
+        return f"Love('{self.first_love}', '{self.last_love}', {self.pay_of_love})"
+
+    def __str__(self):
+        return f"{self.fulllove()} - {self.email_of_love}"
+
+    def __add__(self, other):
+        return self.pay_of_love + other.pay_of_love
+
+    def __len__(self):
+        return len(self.fulllove())
+
+lov_1 = Love('Fairy', 'Fly', 5000)
+lov_2 = Love('Mermeid', 'Water', 6000)
+
+print(lov_1 + lov_2)  # 11000
+print(len(lov_1))  # 9
