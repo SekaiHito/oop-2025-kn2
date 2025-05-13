@@ -19,7 +19,7 @@ class Book:
     def get_total_books(cls):
         return f"Всього створено книг: {cls.total_books}"
 
-book1 = Book("Місто", "Валер'ян Підмогильний", 1927)
+book1 = Book("Кайдашева сім'я", "Іван Нечуй-Левицький", 1878)
 book2 = Book("Кобзар", "Тарас Шевченко", 1840)
 
 print(book1.get_info())
