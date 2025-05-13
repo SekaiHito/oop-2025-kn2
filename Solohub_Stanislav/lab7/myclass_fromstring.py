@@ -4,7 +4,6 @@ class MyClass:
 
     @classmethod
     def from_string(cls, text):
-        """Створює екземпляр з рядка, наприклад, з числа в тексті"""
         number = int(text)
         return cls(number)
 
