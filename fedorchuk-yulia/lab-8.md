@@ -16,23 +16,35 @@
 
 ## Хід роботи
 
-1. 
+1. Навчилися повторно використовувати існуючий код завдяки
+наслідуванню.
+
+2. Створили один батьківський клас і декілька дочірніх. Наслідували частину
+властивостей та функціоналу від батьківського класу в дочірніх класах.
+Освоїли використання методу super.
+
+3. У одному з дочірніх класів організували використання методів
+об’єктів-представників іншого дочірнього класу.
+
+4. Ознайомилися з методами instanceof, issubclassof.
 
 ```py
 
 class Employee:
 
-    raise_amt = 1.04
+    raise_amt = 2.03
 
-    def __init__(self, first, last, pay):
+    def __init__(self, first, last, pay, nature):
         self.first = first
         self.last = last
         self.email = first + '.' + last + '@email.com'
         self.pay = pay
+        self.nature = nature
 
     def fullname(self):
         return '{} {}'.format(self.first, self.last)
-
+    def what_person(self):
+        return '{} {} {}'.format(self.first, self.last, self.nature)
     def apply_raise(self):
         self.pay = int(self.pay * self.raise_amt)
 
@@ -67,12 +79,12 @@ class Manager(Employee):
             print('-->', emp.fullname())
 
 
-dev_1 = Developer('Corey', 'Schafer', 50000, 'Python')
-dev_2 = Developer('Test', 'Employee', 60000, 'Java')
+dev_1 = Developer('Yulia', 'Fedorchuk', 800, "kind")
+dev_2 = Developer('Lia', 'Mia', 9000, "good person")
 
-mgr_1 = Manager('Sue', 'Smith', 90000, [dev_1])
+mgr_1 = Manager('Susan', 'Smurf', 90000, [dev_1])
 
-print(mgr_1.email)
+print(mgr_1.email) #Susan.Smurf@email.com
 
 mgr_1.add_emp(dev_2)
 mgr_1.remove_emp(dev_2)
