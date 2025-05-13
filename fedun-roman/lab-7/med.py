@@ -1,34 +1,40 @@
-class MinecraftVillager:
-    villagers_count = 0
-    village_name = "Default Village"
+class Item:
+    total_items = 0
+    item_type = "Block"
 
-    def __init__(self, nickname, years):
-        self.nickname = nickname
-        self.years = years
-        MinecraftVillager.villagers_count += 1
+    def __init__(self, name, rarity, base_value):
+        self.name = name
+        self.rarity = rarity
+        self.value = base_value * (1 + rarity * 0.1)
+        Item.total_items += 1
 
-    def villager_info(self):
-        return f"{self.nickname}, {self.years} років, {MinecraftVillager.village_name}"
-
-    @classmethod
-    def set_village(cls, name):
-        cls.village_name = name
-        return f"Village: {name}"
+    def describe(self):
+        return f"{self.name} [Rarity: {self.rarity}]: {self.value:.2f} coins, Type: {self.item_type}"
 
     @classmethod
-    def spawn_from_string(cls, s):
-        nickname, years = s.split(',')
-        return cls(nickname.strip(), int(years.strip()))
+    def type_info(cls):
+        return f"Item Type: {cls.item_type}"
+
+    @classmethod
+    def count_items(cls):
+        return f"Total items: {cls.total_items}"
+
+    @classmethod
+    def from_string(cls, s):
+        name, rarity, base_value = s.split(',')
+        return cls(name.strip(), int(rarity.strip()), float(base_value.strip()))
 
     @staticmethod
-    def is_adult(years):
-        return years >= 18
+    def is_rare(rarity):
+        return rarity >= 4
 
-if __name__ == "__main__":
-    villager1 = MinecraftVillager("Steve", 20)
-    print(villager1.villager_info())
-    print(MinecraftVillager.set_village("BlockTown"))
-    villager2 = MinecraftVillager.spawn_from_string("Alex, 19")
-    print(villager2.villager_info())
-    print(f"Дорослий? {MinecraftVillager.is_adult(villager1.years)}")
-    print(f"Всього жителів: {MinecraftVillager.villagers_count}")
+diamond = Item("Diamond", 5, 100)
+iron_ingot = Item("Iron Ingot", 2, 20)
+emerald = Item.from_string("Emerald, 4, 80")
+
+print(diamond.describe())
+print(iron_ingot.describe())
+print(emerald.describe())
+print(Item.type_info())
+print(Item.count_items())
+print(f"Diamond is rare? {Item.is_rare(diamond.rarity)}")

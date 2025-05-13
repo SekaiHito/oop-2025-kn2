@@ -2,7 +2,7 @@ def calculate(a, b, operation):
     if operation == "add":
         return a + b
     elif operation == "subtract":
-        return a - b
+        return b - a
     elif operation == "multiply":
         return a * b
     elif operation == "divide":
@@ -17,3 +17,4 @@ def calculate(a, b, operation):
 print(calculate(10, 5, "add"))       # 15
 print(calculate(10, 5, "multiply"))  # 50
 print(calculate(10, 0, "divide"))    # Ділення на нуль!
+print(calculate(10, 5, "subtract"))

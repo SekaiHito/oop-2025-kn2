@@ -49,14 +49,15 @@ class Love:
         self.last_love = None
 
 
-lov_1 = Love('John', 'Smith')
-lov_1.fulllove = "Corey Schafer"
+lov_1 = Love('Fairy', 'Fly')
+lov_1.fulllove = "Marmeid Water"
 
-print(lov_1.first_love)
-print(lov_1.email_of_love)
-print(lov_1.fulllove)
+print(lov_1.first_love)#Marmeid
+print(lov_1.email_of_love)#Marmeid.Water@it.is.love
+print(lov_1.fulllove)#Marmeid Water
 
-del lov_1.fulllove
+del lov_1.fulllove #Delete Name_of_love
 ```
 ## Висновки
 
+Дізналася про існування декораторів, також дізналася що таке інкапсуляція і getter, setter, delete, вдосконалила англіську на слух.
