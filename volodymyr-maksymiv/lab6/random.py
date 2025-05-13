@@ -22,7 +22,7 @@ emp_2 = Employee('Test', 'Employee', 60000)
 print(emp_1.__dict__)
 print(emp_1.email)
 print(emp_2.email)
-print(emp_1.fullname)
+print(emp_1.fullname())
 print(emp_2.fullname)
 emp_1.raise_amount = 1.07
 print(emp_1.pay)
