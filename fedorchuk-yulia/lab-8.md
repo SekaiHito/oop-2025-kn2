@@ -31,7 +31,6 @@
 ```py
 
 class Employee:
-
     raise_amt = 2.03
 
     def __init__(self, first, last, pay, nature):
@@ -42,29 +41,27 @@ class Employee:
         self.nature = nature
 
     def fullname(self):
-        return '{} {}'.format(self.first, self.last)
+        return f'{self.first} {self.last}'
+
     def what_person(self):
-        return '{} {} {}'.format(self.first, self.last, self.nature)
+        return f'{self.first} {self.last} {self.nature}'
+
     def apply_raise(self):
-        self.pay = int(self.pay * self.raise_amt)
+        self.pay = round(self.pay * self.raise_amt, 2)
 
 
 class Developer(Employee):
     raise_amt = 1.10
 
-    def __init__(self, first, last, pay, prog_lang):
-        super().__init__(first, last, pay)
+    def __init__(self, first, last, pay, nature, prog_lang):
+        super().__init__(first, last, pay, nature)
         self.prog_lang = prog_lang
 
 
 class Manager(Employee):
-
-    def __init__(self, first, last, pay, employees=None):
-        super().__init__(first, last, pay)
-        if employees is None:
-            self.employees = []
-        else:
-            self.employees = employees
+    def __init__(self, first, last, pay, nature, employees=None):
+        super().__init__(first, last, pay, nature)
+        self.employees = employees if employees is not None else []
 
     def add_emp(self, emp):
         if emp not in self.employees:
@@ -79,17 +76,17 @@ class Manager(Employee):
             print('-->', emp.fullname())
 
 
-dev_1 = Developer('Yulia', 'Fedorchuk', 800, "kind")
-dev_2 = Developer('Lia', 'Mia', 9000, "good person")
+dev_1 = Developer('Yulia', 'Fedorchuk', 800, "kind", "Python")
+dev_2 = Developer('Lia', 'Mia', 9000, "good person", "JavaScript")
 
-mgr_1 = Manager('Susan', 'Smurf', 90000, [dev_1])
+mgr_1 = Manager('Susan', 'Smurf', 90000, "organized", [dev_1])
 
-print(mgr_1.email) #Susan.Smurf@email.com
+print(mgr_1.email)  # Susan.Smurf@email.com
 
 mgr_1.add_emp(dev_2)
 mgr_1.remove_emp(dev_2)
 
-mgr_1.print_emps()
+mgr_1.print_emps() #--> Yulia Fedorchuk
 ```
 
 ## Висновки
