@@ -1,52 +1,47 @@
-class Circle:
-    def __init__(self, radius):
-        self._radius = radius  
+class Animal:
+    def __init__(self, name):
+        self._name = name
 
     @property
-    def radius(self):
-        return self._radius
+    def name(self):
+        return self._name
 
-    @radius.setter
-    def radius(self, value):
-        if value > 0:
-            self._radius = value
+    @name.setter
+    def name(self, value):
+        if value:
+            self._name = value
         else:
-            raise ValueError("Радіус має бути додатним числом.")
+            raise ValueError("Name cannot be empty")
 
-    @radius.deleter
-    def radius(self):
-        print("Радіус видалено.")
-        del self._radius
+    def speak(self):
+        return f"{self.name} makes a generic sound"
 
-    @property
-    def area(self):
-        from math import pi
-        return pi * self._radius ** 2
+class Dog(Animal):
+    def speak(self):
+        return f"{self.name} says Woof!"
 
-    @property
-    def diameter(self):
-        return self._radius * 2
+    def __str__(self):
+        return f"Dog: {self.name}"
+
+class Cat(Animal):
+    def speak(self):
+        return f"{self.name} says Meow!"
+
+    def __str__(self):
+        return f"Cat: {self.name}"
 
 def main():
-    c = Circle(5)
-    print(f"Початковий радіус: {c.radius}")
-    print(f"Діаметр: {c.diameter}")
-    print(f"Площа: {c.area:.2f}")
+    dog = Dog("Rex")
+    cat = Cat("Misty")
 
-    print("\nЗміна радіуса на 10...")
-    c.radius = 10
-    print(f"Новий радіус: {c.radius}")
-    print(f"Нова площа: {c.area:.2f}")
-
-    print("\nСпроба задати недопустиме значення...")
+    print(dog.speak())  
+    dog.name = "Buddy"  
+    print(dog.speak()) 
+    
     try:
-        c.radius = -3
+        dog.name = "" 
     except ValueError as e:
-        print("Помилка:", e)
-
-    print("\nВидалення радіуса...")
-    del c.radius
-
+        print(e)
 
 if __name__ == "__main__":
     main()
