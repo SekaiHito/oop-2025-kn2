@@ -1,4 +1,3 @@
-# Батьківський клас
 class Animal:
     def __init__(self, name):
         self.name = name
@@ -6,16 +5,14 @@ class Animal:
     def speak(self):
         return f"{self.name} makes a sound."
 
-# Дочірній клас Dog
 class Dog(Animal):
     def __init__(self, name, breed):
-        super().__init__(name)  # Використання super()
+        super().__init__(name) 
         self.breed = breed
 
     def speak(self):
         return f"{self.name} barks."
 
-# Дочірній клас Cat з використанням Dog
 class Cat(Animal):
     def __init__(self, name, color):
         super().__init__(name)
@@ -27,25 +24,22 @@ class Cat(Animal):
     def interact_with_dog(self, dog: Dog):
         return f"{self.name} the cat meets {dog.name} the dog: {dog.speak()}"
 
-# Демонстрація роботи
 def main():
     dog = Dog("Rex", "Shepherd")
     cat = Cat("Misty", "gray")
 
-    print(dog.speak())                 # Rex barks.
-    print(cat.speak())                 # Misty meows.
-    print(cat.interact_with_dog(dog))  # Виклик методу іншого об'єкта
+    print(dog.speak())             
+    print(cat.speak())                 
+    print(cat.interact_with_dog(dog))  
 
-    # isinstance
     print("\nПеревірки isinstance:")
-    print(isinstance(dog, Animal))    # True
-    print(isinstance(cat, Dog))       # False
+    print(isinstance(dog, Animal))    
+    print(isinstance(cat, Dog))      
 
-    # issubclass
     print("\nПеревірки issubclass:")
-    print(issubclass(Dog, Animal))    # True
-    print(issubclass(Cat, Animal))    # True
-    print(issubclass(Cat, Dog))       # False
+    print(issubclass(Dog, Animal))    
+    print(issubclass(Cat, Animal))   
+    print(issubclass(Cat, Dog))     
 
 
 if __name__ == "__main__":
