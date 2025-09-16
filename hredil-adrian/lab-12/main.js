@@ -14,7 +14,7 @@ function sugarDecorator (coffe) {
 }
 
 let myCoffee = new Coffee()
-console.log(myCoffee.make)
+console.log(myCoffee.make())
 
 myCoffee = sugarDecorator(myCoffee);
 console.log(myCoffee.make());
