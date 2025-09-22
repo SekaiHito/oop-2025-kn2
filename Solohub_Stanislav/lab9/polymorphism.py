@@ -1,4 +1,3 @@
-# Базовий клас
 class Animal:
     def __init__(self, name):
         self.name = name
@@ -6,7 +5,6 @@ class Animal:
     def speak(self):
         return f"{self.name} makes a generic sound"
 
-# Клас Dog з перевизначенням speak() і магічними методами
 class Dog(Animal):
     def speak(self):
         return f"{self.name} says Woof!"
@@ -19,7 +17,6 @@ class Dog(Animal):
             return f"{self.name} and {other.name} became friends!"
         return NotImplemented
 
-# Клас Cat з перевизначенням speak() і магічними методами
 class Cat(Animal):
     def speak(self):
         return f"{self.name} says Meow!"
@@ -32,29 +29,25 @@ class Cat(Animal):
             return self.name == other.name
         return False
 
-# Функція, яка демонструє поліморфізм
 def animal_says(animal: Animal):
     print(animal.speak())
 
-# Основна частина програми
 def main():
     dog1 = Dog("Rex")
     dog2 = Dog("Max")
     cat1 = Cat("Misty")
     cat2 = Cat("Misty")
 
-    # Поліморфізм
     print("Поліморфізм:")
-    animal_says(dog1)  # Rex says Woof!
-    animal_says(cat1)  # Misty says Meow!
+    animal_says(dog1)
+    animal_says(cat1)
 
-    # Магічні методи
     print("\nМагічні методи:")
-    print(str(dog1))           # Dog: Rex
-    print(str(cat1))           # Cat: Misty
-    print(dog1 + dog2)         # Rex and Max became friends!
-    print(cat1 == cat2)        # True
-    print(cat1 == dog1)        # False (різні типи)
+    print(str(dog1))          
+    print(str(cat1))           
+    print(dog1 + dog2)         
+    print(cat1 == cat2)      
+    print(cat1 == dog1)      
 
 
 if __name__ == "__main__":
