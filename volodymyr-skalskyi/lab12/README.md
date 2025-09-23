@@ -29,6 +29,7 @@
 ### Приклад реалізації шаблону Decorator для автомобіля:
 
 ```javascript
+// Базовий клас автомобіля
 class Car {
   constructor() {
     this.basePrice = 20000;
@@ -44,44 +45,51 @@ class Car {
   }
 }
 
-function airConditioningDecorator(car) {
-  const originalGetDescription = car.getDescription;
-  const originalGetPrice = car.getPrice;
+// Базовий клас декоратора
+class CarDecorator {
+  constructor(car) {
+    this.car = car;
+  }
 
-  car.getDescription = function () {
-    return originalGetDescription.call(this) + ", Кондиціонер";
-  };
+  getDescription() {
+    return this.car.getDescription();
+  }
 
-  car.getPrice = function () {
-    return originalGetPrice.call(this) + 1500;
-  };
-
-  return car;
+  getPrice() {
+    return this.car.getPrice();
+  }
 }
 
-function leatherSeatsDecorator(car) {
-  const originalGetDescription = car.getDescription;
-  const originalGetPrice = car.getPrice;
+// Декоратор кондиціонера
+class AirConditioningDecorator extends CarDecorator {
+  getDescription() {
+    return this.car.getDescription() + ", Кондиціонер";
+  }
 
-  car.getDescription = function () {
-    return originalGetDescription.call(this) + ", Шкіряні сидіння";
-  };
+  getPrice() {
+    return this.car.getPrice() + 1500;
+  }
+}
 
-  car.getPrice = function () {
-    return originalGetPrice.call(this) + 2000;
-  };
+// Декоратор шкіряних сидінь
+class LeatherSeatsDecorator extends CarDecorator {
+  getDescription() {
+    return this.car.getDescription() + ", Шкіряні сидіння";
+  }
 
-  return car;
+  getPrice() {
+    return this.car.getPrice() + 2000;
+  }
 }
 
 // Використання
 let myCar = new Car();
 console.log(myCar.getDescription()); // "Базове обладнання"
 
-myCar = airConditioningDecorator(myCar);
+myCar = new AirConditioningDecorator(myCar);
 console.log(myCar.getDescription()); // "Базове обладнання, Кондиціонер"
 
-myCar = leatherSeatsDecorator(myCar);
+myCar = new LeatherSeatsDecorator(myCar);
 console.log(myCar.getDescription()); // "Базове обладнання, Кондиціонер, Шкіряні сидіння"
 ```
 

@@ -1,3 +1,4 @@
+// Базовий клас автомобіля
 class Car {
     constructor() {
         this.basePrice = 20000;
@@ -17,34 +18,45 @@ class Car {
     }
 }
 
-function airConditioningDecorator(car) {
-    const originalGetDescription = car.getDescription;
-    const originalGetPrice = car.getPrice;
+// Базовий клас декоратора
+class CarDecorator {
+    constructor(car) {
+        this.car = car;
+    }
 
-    car.getDescription = function () {
-        return originalGetDescription.call(this) + ", Кондиціонер";
-    };
+    getDescription() {
+        return this.car.getDescription();
+    }
 
-    car.getPrice = function () {
-        return originalGetPrice.call(this) + 1500;
-    };
+    getPrice() {
+        return this.car.getPrice();
+    }
 
-    return car;
+    getInfo() {
+        return `Автомобіль: ${this.getDescription()}\nЦіна: $${this.getPrice()}`;
+    }
 }
 
-function leatherSeatsDecorator(car) {
-    const originalGetDescription = car.getDescription;
-    const originalGetPrice = car.getPrice;
+// Декоратор кондиціонера
+class AirConditioningDecorator extends CarDecorator {
+    getDescription() {
+        return this.car.getDescription() + ", Кондиціонер";
+    }
 
-    car.getDescription = function () {
-        return originalGetDescription.call(this) + ", Шкіряні сидіння";
-    };
+    getPrice() {
+        return this.car.getPrice() + 1500;
+    }
+}
 
-    car.getPrice = function () {
-        return originalGetPrice.call(this) + 2000;
-    };
+// Декоратор шкіряних сидінь
+class LeatherSeatsDecorator extends CarDecorator {
+    getDescription() {
+        return this.car.getDescription() + ", Шкіряні сидіння";
+    }
 
-    return car;
+    getPrice() {
+        return this.car.getPrice() + 2000;
+    }
 }
 
 function demonstrateCarDecorator() {
@@ -57,12 +69,12 @@ function demonstrateCarDecorator() {
 
     // Автомобіль з кондиціонером
     console.log("2. Автомобіль з кондиціонером:");
-    myCar = airConditioningDecorator(new Car());
+    myCar = new AirConditioningDecorator(new Car());
     console.log(myCar.getInfo() + "\n");
 
     // Автомобіль з кондиціонером та шкіряними сидіннями
     console.log("3. Автомобіль з кондиціонером та шкіряними сидіннями:");
-    myCar = leatherSeatsDecorator(airConditioningDecorator(new Car()));
+    myCar = new LeatherSeatsDecorator(new AirConditioningDecorator(new Car()));
     console.log(myCar.getInfo() + "\n");
 
     // Динамічне додавання опцій
@@ -70,10 +82,10 @@ function demonstrateCarDecorator() {
     let dynamicCar = new Car();
     console.log(`Початковий: ${dynamicCar.getDescription()} - $${dynamicCar.getPrice()}`);
 
-    dynamicCar = airConditioningDecorator(dynamicCar);
+    dynamicCar = new AirConditioningDecorator(dynamicCar);
     console.log(`+ кондиціонер: ${dynamicCar.getDescription()} - $${dynamicCar.getPrice()}`);
 
-    dynamicCar = leatherSeatsDecorator(dynamicCar);
+    dynamicCar = new LeatherSeatsDecorator(dynamicCar);
     console.log(`+ шкіряні сидіння: ${dynamicCar.getDescription()} - $${dynamicCar.getPrice()}`);
 }
 
