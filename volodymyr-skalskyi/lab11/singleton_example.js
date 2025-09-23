@@ -1,9 +1,5 @@
 class Logger {
     constructor() {
-        if (Logger.instance) {
-            return Logger.instance;
-        }
-
         this.initialized = false;
         this.logs = [];
         this.logLevel = "INFO";
