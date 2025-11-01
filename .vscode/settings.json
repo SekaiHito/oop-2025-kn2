@@ -1,0 +1,11 @@
+{
+  "python.testing.unittestArgs": [
+    "-v",
+    "-s",
+    "./sasnyk-volodymyr",
+    "-p",
+    "test_*.py"
+  ],
+  "python.testing.pytestEnabled": false,
+  "python.testing.unittestEnabled": true
+}
