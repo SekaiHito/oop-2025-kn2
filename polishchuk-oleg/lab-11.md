@@ -96,6 +96,8 @@ class Olives(ToppingDecorator):
     def get_cost(self) -> float:
         return self._wrapped_pizza.get_cost() + 1.25
 
+# --- Клієнтський код ---
+
 print("--- Створюємо просту піцу (лише основа) ---")
 simple_pizza = ThinCrustPizza()
 print(f"Піца: {simple_pizza.get_description()}")
@@ -117,13 +119,6 @@ complex_pizza = Olives(complex_pizza)
 
 print(f"Піца: {complex_pizza.get_description()}")
 print(f"Ціна: ${complex_pizza.get_cost():.2f}")
-```
-
-### Запуск прикладу:
-
-```bash
-node singleton.js
-```
 
 ## Висновок:
 
