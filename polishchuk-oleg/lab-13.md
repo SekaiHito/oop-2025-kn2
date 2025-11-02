@@ -120,7 +120,13 @@ classDiagram
     CarStrategy --|> IRouteStrategy : "реалізує"
     TransitStrategy --|> IRouteStrategy : "реалізує"
 
-    ##приклад коду 
+
+
+
+
+
+
+##приклад коду 
     ##import abc
 
 # --- 1. Інтерфейс Стратегії ---
