@@ -42,6 +42,89 @@
 Познайомитися з групою **структурних** шаблонів проєктування та реалізувати шаблон **«Декоратор» (Decorator)**.
 
 ---
+## приклад коду 
+import abc
+
+class IPizza(abc.ABC):
+    def __init__(self):
+        self.description = "Невідома основа"
+    
+    def get_description(self) -> str:
+        return self.description
+    
+    @abc.abstractmethod
+    def get_cost(self) -> float:
+        pass
+
+class ThinCrustPizza(IPizza):
+    def __init__(self):
+        self.description = "Основа піци на тонкому тісті"
+    
+    def get_cost(self) -> float:
+        return 5.99
+
+class ThickCrustPizza(IPizza):
+    def __init__(self):
+        self.description = "Основа піци на товстому тісті"
+    
+    def get_cost(self) -> float:
+        return 6.99
+
+class ToppingDecorator(IPizza):
+    def __init__(self, pizza: IPizza):
+        self._wrapped_pizza = pizza
+    
+    @abc.abstractmethod
+    def get_description(self) -> str:
+        pass
+    
+    @abc.abstractmethod
+    def get_cost(self) -> float:
+        pass
+
+class Cheese(ToppingDecorator):
+    def get_description(self) -> str:
+        return self._wrapped_pizza.get_description() + ", з сиром"
+    
+    def get_cost(self) -> float:
+        return self._wrapped_pizza.get_cost() + 1.50
+
+class Pepperoni(ToppingDecorator):
+    def get_description(self) -> str:
+        return self._wrapped_pizza.get_description() + ", з пепероні"
+    
+    def get_cost(self) -> float:
+        return self._wrapped_pizza.get_cost() + 2.00
+
+class Olives(ToppingDecorator):
+    def get_description(self) -> str:
+        return self._wrapped_pizza.get_description() + ", з оливками"
+    
+    def get_cost(self) -> float:
+        return self._wrapped_pizza.get_cost() + 1.25
+
+# --- Клієнтський код ---
+print("--- Створюємо просту піцу (лише основа) ---")
+simple_pizza = ThinCrustPizza()
+print(f"Піца: {simple_pizza.get_description()}")
+print(f"Ціна: ${simple_pizza.get_cost():.2f}")
+
+print("\n--- Створюємо Пепероні на товстому тісті ---")
+my_pizza: IPizza = ThickCrustPizza()
+my_pizza = Cheese(my_pizza)
+my_pizza = Pepperoni(my_pizza)
+
+print(f"Піца: {my_pizza.get_description()}")
+print(f"Ціна: ${my_pizza.get_cost():.2f}")
+
+print("\n--- Створюємо вегетаріанську з подвійним сиром та оливками ---")
+complex_pizza = ThinCrustPizza()
+complex_pizza = Cheese(complex_pizza)
+complex_pizza = Cheese(complex_pizza) # Декоратори можна застосовувати декілька разів
+complex_pizza = Olives(complex_pizza)
+
+print(f"Піца: {complex_pizza.get_description()}")
+print(f"Ціна: ${complex_pizza.get_cost():.2f}")
 
 ## 📖 Хід роботи
 
