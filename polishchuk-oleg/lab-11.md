@@ -1,0 +1,207 @@
+<div align="center">
+
+# МІНІСТЕРСТВО ОСВІТИ ТА НАУКИ
+
+<br>
+
+## Львівський національний університет ветеринарії і біотехнологій імені С.З.Ґжицького
+
+<br><br><br>
+
+# Звіт
+
+<br>
+
+**про виконання лаборатоної роботи №11**
+
+**з дисципліни "Об'єктно-орієнтоване програмування"**
+
+**на тему**
+
+## **Структурні шаблони проєктування (Декоратор)**
+
+<br><br><br>
+
+**Виконав:** студент групи КН-31<br>
+Поліщук Олег
+
+<br>
+
+**Перевірив:** ст. викладач<br>
+Назар Заплатинський
+
+<br><br><br>
+
+### Львів 2025
+</div>
+
+---
+
+## 🎯 Мета роботи
+
+Познайомитися з групою **структурних** шаблонів проєктування та реалізувати шаблон **«Декоратор» (Decorator)**.
+
+---
+## приклад коду 
+import abc
+
+class IPizza(abc.ABC):
+    def __init__(self):
+        self.description = "Невідома основа"
+    
+    def get_description(self) -> str:
+        return self.description
+    
+    @abc.abstractmethod
+    def get_cost(self) -> float:
+        pass
+
+class ThinCrustPizza(IPizza):
+    def __init__(self):
+        self.description = "Основа піци на тонкому тісті"
+    
+    def get_cost(self) -> float:
+        return 5.99
+
+class ThickCrustPizza(IPizza):
+    def __init__(self):
+        self.description = "Основа піци на товстому тісті"
+    
+    def get_cost(self) -> float:
+        return 6.99
+
+class ToppingDecorator(IPizza):
+    def __init__(self, pizza: IPizza):
+        self._wrapped_pizza = pizza
+    
+    @abc.abstractmethod
+    def get_description(self) -> str:
+        pass
+    
+    @abc.abstractmethod
+    def get_cost(self) -> float:
+        pass
+
+class Cheese(ToppingDecorator):
+    def get_description(self) -> str:
+        return self._wrapped_pizza.get_description() + ", з сиром"
+    
+    def get_cost(self) -> float:
+        return self._wrapped_pizza.get_cost() + 1.50
+
+class Pepperoni(ToppingDecorator):
+    def get_description(self) -> str:
+        return self._wrapped_pizza.get_description() + ", з пепероні"
+    
+    def get_cost(self) -> float:
+        return self._wrapped_pizza.get_cost() + 2.00
+
+class Olives(ToppingDecorator):
+    def get_description(self) -> str:
+        return self._wrapped_pizza.get_description() + ", з оливками"
+    
+    def get_cost(self) -> float:
+        return self._wrapped_pizza.get_cost() + 1.25
+
+# --- Клієнтський код ---
+print("--- Створюємо просту піцу (лише основа) ---")
+simple_pizza = ThinCrustPizza()
+print(f"Піца: {simple_pizza.get_description()}")
+print(f"Ціна: ${simple_pizza.get_cost():.2f}")
+
+print("\n--- Створюємо Пепероні на товстому тісті ---")
+my_pizza: IPizza = ThickCrustPizza()
+my_pizza = Cheese(my_pizza)
+my_pizza = Pepperoni(my_pizza)
+
+print(f"Піца: {my_pizza.get_description()}")
+print(f"Ціна: ${my_pizza.get_cost():.2f}")
+
+print("\n--- Створюємо вегетаріанську з подвійним сиром та оливками ---")
+complex_pizza = ThinCrustPizza()
+complex_pizza = Cheese(complex_pizza)
+complex_pizza = Cheese(complex_pizza) # Декоратори можна застосовувати декілька разів
+complex_pizza = Olives(complex_pizza)
+
+print(f"Піца: {complex_pizza.get_description()}")
+print(f"Ціна: ${complex_pizza.get_cost():.2f}")
+
+## 📖 Хід роботи
+
+### «Декоратор» (Decorator)
+
+Це структурний шаблон проєктування, який дозволяє **динамічно додавати нові обов'язки** або функціональність до об'єкта, не змінюючи його вихідний код.
+
+### Основна мета:
+
+* Надати гнучку альтернативу спадкуванню для розширення функціональності.
+* Дозволити додавати нові обов'язки об'єктам під час виконання програми.
+* Уникнути "вибуху класів" (створення великої кількості підкласів для кожної можливої комбінації функцій).
+
+### Основна ідея реалізації:
+
+1.  Створюється загальний **інтерфейс (Компонент)**, який реалізують як базовий об'єкт, так і всі декоратори.
+2.  Створюється **абстрактний клас Декоратора**, який реалізує той самий інтерфейс і "обгортає" (містить посилання на) об'єкт Компонента.
+3.  **Конкретні Декоратори** наслідують абстрактний Декоратор. При виклику їхніх методів, вони додають свою власну логіку (наприклад, нову ціну або опис) і делегують виклик "обгорнутому" об'єкту.
+
+### 📈 UML-діаграма
+
+Діаграма класів для прикладу з піцерією, що ілюструє шаблон «Декоратор»:
+
+```mermaid
+classDiagram
+    direction UP
+    
+    %% Абстрактний Компонент
+    class IPizza {
+        <<interface>>
+        +get_description(): str
+        +get_cost(): float
+    }
+
+    %% Конкретні Компоненти (Основи)
+    class ThinCrustPizza {
+        +get_description(): str
+        +get_cost(): float
+    }
+    class ThickCrustPizza {
+        +get_description(): str
+        +get_cost(): float
+    }
+
+    %% Абстрактний Декоратор
+    class ToppingDecorator {
+        <<abstract>>
+        -wrapped_pizza: IPizza
+        +get_description(): str
+        +get_cost(): float
+    }
+
+    %% Конкретні Декоратори (Топінги)
+    class Cheese {
+        +get_description(): str
+        +get_cost(): float
+    }
+    class Pepperoni {
+        +get_description(): str
+        +get_cost(): float
+    }
+    class Olives {
+        +get_description(): str
+        +get_cost(): float
+    }
+    
+    %% Зв'язки
+    ThinCrustPizza --|> IPizza : "реалізує"
+    ThickCrustPizza --|> IPizza : "реалізує"
+    
+    ToppingDecorator --|> IPizza : "реалізує"
+    ToppingDecorator o-- IPizza : "обгортає (has-a)"
+    
+    Cheese --|> ToppingDecorator
+    Pepperoni --|> ToppingDecorator
+    Olives --|> ToppingDecorator
+    
+    class Client {
+    }
+    Client ..> IPizza : "використовує"
