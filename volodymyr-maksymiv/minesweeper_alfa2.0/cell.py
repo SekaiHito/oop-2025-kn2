@@ -1,13 +1,12 @@
 from tkinter import Button, Label, messagebox
 import random
-import settings
-import sys
 from window import Window
+import sys
 
 class Cell:
     all = []
-    cell_count = settings.CELL_COUNT
     cell_count_label_object = None
+    cell_count = 0
     def __init__(self, x, y, is_mine=False):
         self.is_mine = is_mine
         self.is_opened = False
@@ -22,26 +21,13 @@ class Cell:
     def create_btn_oblect(self, location):
         btn = Button(
             location,
-            width=12,
+            width=8,
             height=4,
         )
         btn.bind('<Button-1>', self.left_click_actions)
         btn.bind('<Button-3>', self.right_click_actions)
         self.cell_btn_object = btn
     
-    @staticmethod
-    def create_cell_count_label(location):
-        lbl = Label(
-            location,
-            bg = 'black',
-            fg = 'white',
-            text = f"Cells left:{Cell.cell_count}",
-            width = 14,
-            height= 4,
-            font = ("",30)
-            
-        )
-        Cell.cell_count_label_object = lbl
     
     def left_click_actions(self, event):
         if self.is_mine:
@@ -114,15 +100,41 @@ class Cell:
             default_bg = Button().cget("background")
             self.cell_btn_object.configure(bg=default_bg)
             self.is_mine_candidate = False
+
+    def __repr__(self):
+        return f"Cell({self.x}, {self.y})"
+
+class Grid:
+
+    @staticmethod
+    def Grid_generate(location, grid_size):
+        for x in range(grid_size):
+            for y in range(grid_size):
+                c = Cell(x , y)
+                c.create_btn_oblect(location)
+                c.cell_btn_object.grid(column=y, row=x)
+
+    @staticmethod
+    def create_cell_count_label(location):
+        lbl = Label(
+            location,
+            bg = 'black',
+            fg = 'white',
+            text = f"Cells left:{Cell.cell_count}",
+            width = 14,
+            height= 4,
+            font = ("",30)
+            
+        )
+        Cell.cell_count_label_object = lbl
     
     @staticmethod
-    def randomize_mines():
+    def randomize_mines(mines_count):
         
         picked_cells = random.sample(
-            Cell.all, settings.MINES_COUNT
+            Cell.all, mines_count
         )
         for picked_cell in picked_cells:
             picked_cell.is_mine = True
 
-    def __repr__(self):
-        return f"Cell({self.x}, {self.y})"
+    

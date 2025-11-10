@@ -1,6 +1,5 @@
 from tkinter import *
-import utils
-import settings
+
 
 class Window:
     root = None  
@@ -9,19 +8,18 @@ class Window:
     def window_settings():
         Window.root = Tk()
         Window.root.configure(bg="black")
-        Window.root.geometry(f'{settings.WIDTH}x{settings.HEIGTH}')
         Window.root.title("Сапер")
         Window.root.resizable(False, False)
+        Window.root.rowconfigure(1, weight=1)
+        Window.root.columnconfigure(1, weight=1)
 
     @staticmethod
     def Top_frame():
         top_frame = Frame(
             Window.root,
-            bg='black',
-            width=settings.WIDTH,
-            height=utils.height_prct(25)
+            bg='black'
         )
-        top_frame.place(x=0, y=0)
+        top_frame.grid(row=0, column=0, columnspan=2, sticky="ew")
 
         game_title = Label(
             top_frame,
@@ -30,20 +28,15 @@ class Window:
             text='Minesweeper Game',
             font=('', 48)
         )
-        game_title.place(
-            x=utils.width_prct(25),
-            y=0
-        )
+        game_title.pack(pady=20)
 
     @staticmethod
     def Left_frame():
         left_frame = Frame(
             Window.root,
-            bg='black',
-            width=utils.width_prct(25),
-            height=utils.height_prct(75)
+            bg='black'
         )
-        left_frame.place(x=0, y=utils.height_prct(25))
+        left_frame.grid(row=1, column=0, sticky="ns")
         return left_frame
 
     @staticmethod
@@ -51,8 +44,6 @@ class Window:
         centre_frame = Frame(
             Window.root,
             bg='black',
-            width=utils.width_prct(75),
-            height=utils.height_prct(75)
         )
-        centre_frame.place(x=utils.width_prct(25), y=utils.height_prct(25))
+        centre_frame.grid(row=1, column=1, sticky="nsew")
         return centre_frame
