@@ -1,11 +1,12 @@
 from tkinter import *
-from cell import Cell, Grid
+from cell import Cell
+from grid import Grid
 from window import Window
 import math
 
-class minesweeper_game:
+class Minesweeper:
 
-    DIFFICULTY_LEVELS = {
+    difficulty_levels = {
         'Легко': {'grid_size': 6, 'mine_percentage': 0.20},  
         'Середньо': {'grid_size': 7, 'mine_percentage': 0.30}, 
         'Складно': {'grid_size': 9, 'mine_percentage': 0.40}  
@@ -13,9 +14,9 @@ class minesweeper_game:
 
     def __init__(self):
         Window.window_settings()
-        Window.Top_frame()
-        self.left_frame = Window.Left_frame()
-        self.centre_frame = Window.Centre_frame()
+        Window.top_frames()
+        self.left_frame = Window.left_frames()
+        self.centre_frame = Window.centre_frames()
         self.create_difficulty_buttons()
         self.start_new_game('Легко')
     
@@ -23,7 +24,7 @@ class minesweeper_game:
         btn_frame = Frame(self.left_frame, bg='black')
         btn_frame.pack(pady=10)
 
-        for level in self.DIFFICULTY_LEVELS.keys():
+        for level in self.difficulty_levels.keys():
             btn = Button(
                 btn_frame,
                 text=level,
@@ -43,7 +44,7 @@ class minesweeper_game:
     def start_new_game(self, difficulty):
         self.clear_game_ui()
 
-        new_settings = self.DIFFICULTY_LEVELS[difficulty]
+        new_settings = self.difficulty_levels[difficulty]
         grid_size = new_settings['grid_size']
         mine_percentage = new_settings['mine_percentage']
         total_cells = grid_size ** 2

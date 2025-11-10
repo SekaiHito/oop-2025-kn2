@@ -14,7 +14,7 @@ class Window:
         Window.root.columnconfigure(1, weight=1)
 
     @staticmethod
-    def Top_frame():
+    def top_frames():
         top_frame = Frame(
             Window.root,
             bg='black'
@@ -31,7 +31,7 @@ class Window:
         game_title.pack(pady=20)
 
     @staticmethod
-    def Left_frame():
+    def left_frames():
         left_frame = Frame(
             Window.root,
             bg='black'
@@ -40,7 +40,7 @@ class Window:
         return left_frame
 
     @staticmethod
-    def Centre_frame():
+    def centre_frames():
         centre_frame = Frame(
             Window.root,
             bg='black',
