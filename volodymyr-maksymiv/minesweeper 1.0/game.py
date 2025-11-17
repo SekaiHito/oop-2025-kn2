@@ -1,4 +1,3 @@
-# game.py
 from tkinter import *
 from tkinter import messagebox
 from cell import Cell
