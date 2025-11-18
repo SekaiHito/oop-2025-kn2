@@ -48,15 +48,7 @@ class Minesweeper:
                 command=lambda lvl=level: self.start_new_game(lvl)
             )
             btn.pack(pady=5)
-            
-        self.restart_button = Button(
-            self.left_frame,
-            text="Рестарт",
-            width=10,
-            command=self.on_restart_click
-        )
-        self.restart_button.pack(pady=20)
-
+    
     def on_restart_click(self):
         self.start_new_game(self.current_difficulty)
 
