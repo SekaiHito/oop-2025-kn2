@@ -1,21 +1,21 @@
-﻿# Визначаємо 3 функції
+﻿# Оголошуємо 3 функції
 
-def my_function():
-    print("Привіт з моєї функції!")
+def greet():
+    print("Вітаю з моєї функції!")
 
-def my_function_with_args(username, greeting):
-    print("Привіт, %s, з моєї функції! Бажаю тобі %s." % (username, greeting))
+def personalized_greeting(name, wish):
+    print(f"Привіт, {name}, з моєї функції! Бажаю тобі {wish}.")
 
-def sum_two_numbers(a, b):
-    return a + b
+def add_numbers(num1, num2):
+    return num1 + num2
 
-# Виводимо просте привітання
-my_function()
+# Викликаємо функцію привітання
+greet()
 
-# Виведе: "Привіт, John Doe, з моєї функції! Бажаю тобі чудового року!"
-my_function_with_args("John Doe", "чудового року!")
+# Виведе: "Привіт, Олексій, з моєї функції! Бажаю тобі чудового дня!"
+personalized_greeting("Олексій", "чудового дня!")
 
-# Після цього рядка змінна x буде містити значення 3
-x = sum_two_numbers(1, 2)
-print("Сума: %f" % (x))
+# Після виконання цього рядка змінна result міститиме значення 3
+result = add_numbers(1, 2)
+print(f"Сума: {result:.1f}")
 

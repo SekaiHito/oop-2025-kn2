@@ -1,26 +1,35 @@
-class Employee:
-    num_of_emp = 0
-    raise_amount = 2.03
-    def __init__(self, first, last, pay, nature):
-        self.first = first
-        self.last = last
-        self.email = first + '.' + last + '@email.com'
-        self.pay = pay
-        self.nature = nature
+class Love:
 
-        Employee.num_of_emp += 1
+    def __init__(self, first_love, last_love):
+        self.first_love = first_love
+        self.last_love = last_love
 
-    def fullname(self):
-        return '{} {}'.format(self.first, self.last)
-    def what_person(self):
-        return '{} {} {}'.format(self.first, self.last, self.nature)
-    def aplly_raise(self):
-        self.pay = int(self.pay * self.raise_amount)
+    @property
+    def email_of_love(self):
+        return '{}.{}@it.is.love'.format(self.first_love, self.last_love)
 
-emp_1 = Employee('Yulia', 'Fedorchuk', 800, "kind")
-emp_2 = Employee('Lia', 'Mia', 9000, "good person")
+    @property
+    def fulllove(self):
+        return '{} {}'.format(self.first_love, self.last_love)
+    
+    @fulllove.setter
+    def fulllove(self, name):
+        first_love, last_love = name.split(' ')
+        self.first_love = first_love
+        self.last_love = last_love
+    
+    @fulllove.deleter
+    def fulllove(self):
+        print('Delete Name_of_love!')
+        self.first_love = None
+        self.last_love = None
 
-print(emp_1.email) #Yulia.Fedorchuk@email.com
-print(emp_2.pay) #9000
-print(emp_1.what_person()) #Yulia Fedorchuk is kind
-print(Employee.num_of_emp) #2
+
+lov_1 = Love('Fairy', 'Fly')
+lov_1.fulllove = "Marmeid Water"
+
+print(lov_1.first_love)#Marmeid
+print(lov_1.email_of_love)#Marmeid.Water@it.is.love
+print(lov_1.fulllove)#Marmeid Water
+
+del lov_1.fulllove #Delete Name_of_love
