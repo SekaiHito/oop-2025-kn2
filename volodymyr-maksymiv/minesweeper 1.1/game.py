@@ -3,21 +3,13 @@ from tkinter import messagebox
 from cell import Cell
 from grid import Grid
 from window import Window
-import math
-import time
-import json
-import os
+from game_logic import GameLogic 
 
 class Minesweeper:
-
-    difficulty_levels = {
-        'Легко': {'grid_size': 7, 'mine_percentage': 0.20},  
-        'Середньо': {'grid_size': 9, 'mine_percentage': 0.25}, 
-        'Складно': {'grid_size': 12, 'mine_percentage': 0.30}  
-    }
-    SCORES_FILE = 'scores.json'
-
     def __init__(self):
+
+        self.logic = GameLogic()
+        
         Window.window_settings()
         Window.top_frames()
         self.left_frame = Window.left_frames()
@@ -29,18 +21,28 @@ class Minesweeper:
         self.create_control_buttons() 
         self.create_info_labels()
         
-        self.start_time = None
-        self.game_over = False
-        self.first_click = True
-        self.current_difficulty = 'Легко'
-        
-        self.start_new_game(self.current_difficulty)
+        self.start_new_game(self.logic.current_difficulty)
+
+    @property
+    def game_over(self):
+        return self.logic.game_over
     
+    @game_over.setter
+    def game_over(self, value):
+        self.logic.game_over = value
+
+    @property
+    def first_click(self):
+        return self.logic.first_click
+    
+    # --- Методи UI ---
+
     def create_control_buttons(self):
         difficulty_frame = Frame(self.left_frame, bg='black')
         difficulty_frame.pack(pady=10)
 
-        for level in self.difficulty_levels.keys():
+        # Беремо рівні складності з логіки
+        for level in self.logic.difficulty_levels.keys():
             btn = Button(
                 difficulty_frame,
                 text=level,
@@ -50,7 +52,7 @@ class Minesweeper:
             btn.pack(pady=5)
     
     def on_restart_click(self):
-        self.start_new_game(self.current_difficulty)
+        self.start_new_game(self.logic.current_difficulty)
 
     def create_info_labels(self):
         self.timer_label = Label(
@@ -74,13 +76,11 @@ class Minesweeper:
             Cell.cell_count_label_object = None
     
     def start_new_game(self, difficulty):
+        self.logic.reset_state(difficulty)
         self.clear_game_ui()
-        self.game_over = False
-        self.current_difficulty = difficulty
-        self.first_click = True 
         
-        new_settings = self.difficulty_levels[difficulty]
-        grid_size = new_settings['grid_size']
+        settings = self.logic.get_current_settings()
+        grid_size = settings['grid_size']
         
         Cell.all.clear() 
         Cell.cell_count = 0 
@@ -90,21 +90,12 @@ class Minesweeper:
         Cell.cell_count_label_object.pack(pady=20) 
         
         self.update_high_score_display()
-        
-        self.start_time = None 
         self.timer_label.configure(text="Час: 0.0s")
     
     def initialize_mines(self, first_clicked_cell):
-        self.first_click = False 
+        self.logic.first_click = False 
         
-        new_settings = self.difficulty_levels[self.current_difficulty]
-        grid_size = new_settings['grid_size']
-        mine_percentage = new_settings['mine_percentage']
-        total_cells = grid_size ** 2
-        mines_count = math.ceil(total_cells * mine_percentage) 
-        
-        if mines_count >= total_cells:
-            mines_count = total_cells - 1
+        mines_count, total_cells = self.logic.calculate_mines_count()
 
         Cell.cell_count = total_cells - mines_count
         Cell.cell_count_label_object.configure(
@@ -113,22 +104,22 @@ class Minesweeper:
         
         Grid.randomize_mines(mines_count, first_clicked_cell)
 
-        self.start_time = time.time()
+        self.logic.start_timer()
         self.update_timer()
 
     def update_timer(self):
-        if self.game_over:
+        if self.logic.game_over:
             return 
         
-        if self.start_time is None:
+        if self.logic.start_time is None:
             return
 
-        elapsed = time.time() - self.start_time
+        elapsed = self.logic.get_elapsed_time()
         self.timer_label.configure(text=f"Час: {elapsed:.1f}s")
         Window.root.after(100, self.update_timer)
 
     def game_over_lose(self):
-        self.game_over = True
+        self.logic.game_over = True
         
         for cell in Cell.all:
             if cell.is_mine:
@@ -145,10 +136,10 @@ class Minesweeper:
             self.game_exit() 
 
     def game_over_win(self):
-        self.game_over = True
-        elapsed_time = time.time() - self.start_time
+        self.logic.game_over = True
+        elapsed_time = self.logic.get_elapsed_time()
         
-        self.save_score(elapsed_time)
+        self.logic.save_score(elapsed_time)
         self.update_high_score_display()
         
         response = messagebox.askquestion(
@@ -165,38 +156,23 @@ class Minesweeper:
         Window.root.destroy()
 
     def load_scores(self):
-        if not os.path.exists(self.SCORES_FILE):
-            return {level: None for level in self.difficulty_levels.keys()}
-        
-        try:
-            with open(self.SCORES_FILE, 'r') as f:
-                return json.load(f)
-        except (FileNotFoundError, json.JSONDecodeError):
-            return {level: None for level in self.difficulty_levels.keys()}
+        # Делегуємо запит до логіки
+        return self.logic.load_scores()
             
     def save_score(self, new_time):
-        scores = self.load_scores()
-        current_best = scores.get(self.current_difficulty)
-        
-        if current_best is None or new_time < current_best:
-            scores[self.current_difficulty] = new_time
-            try:
-                with open(self.SCORES_FILE, 'w') as f:
-                    json.dump(scores, f)
-            except IOError as e:
-                print(f"Помилка збереження рекорду: {e}")
+        # Делегуємо запит до логіки
+        self.logic.save_score(new_time)
                 
     def update_high_score_display(self):
-        scores = self.load_scores()
-        best_time = scores.get(self.current_difficulty)
+        best_time = self.logic.get_best_score()
         
         if best_time:
             self.high_score_label.configure(
-                text=f"Рекорд ({self.current_difficulty}):\n{best_time:.2f}с"
+                text=f"Рекорд ({self.logic.current_difficulty}):\n{best_time:.2f}с"
             )
         else:
             self.high_score_label.configure(
-                text=f"Рекорд ({self.current_difficulty}):\nN/A"
+                text=f"Рекорд ({self.logic.current_difficulty}):\nN/A"
             )
 
     def run(self):

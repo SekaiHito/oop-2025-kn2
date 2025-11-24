@@ -21,7 +21,11 @@ class Post:
 
 # Клас 1: Відповідає ТІЛЬКИ за дані поста
 class Post:
+    '''
+    This class contain logic that saving file
+    '''
     def __init__(self, title, content):
+        
         self.title = title
         self.content = content
 

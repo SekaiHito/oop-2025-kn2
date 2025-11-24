@@ -11,7 +11,8 @@ def register_user(username, password):
         print("Помилка: Пароль має містити хоча б одну цифру!")
         return
     
-    # 2. Створення
+    # 2. Створення2
+
     user = {'name': username, 'pass': password}
     print(f"Користувача {username} створено.")
     
