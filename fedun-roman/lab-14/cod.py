@@ -5,10 +5,6 @@ class Report:
     def generate(self):
         return f"Звіт: {self.content}"
 
-    def save_to_file(self, filename):
-        with open(filename, "w") as f:
-            f.write(self.content)
-
 class Report:
     def __init__(self, content):
         self.content = content
