@@ -24,13 +24,11 @@ class TestMinesweeperLogic(unittest.TestCase):
 
     def test_difficulty_settings(self):
 
-        # Тест для рівня 'Легко'
         self.logic.reset_state('Легко')
         settings = self.logic.get_current_settings()
         self.assertEqual(settings['grid_size'], 7)
         self.assertEqual(settings['mine_percentage'], 0.20)
 
-        # Тест для рівня 'Складно'
         self.logic.reset_state('Складно')
         settings = self.logic.get_current_settings()
         self.assertEqual(settings['grid_size'], 12)
