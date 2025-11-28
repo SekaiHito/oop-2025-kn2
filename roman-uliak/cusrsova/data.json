@@ -1,0 +1,12 @@
+{
+    "cars": [
+        {
+            "car_id": "123",
+            "brand": "asdasd",
+            "model": "asd21",
+            "year": 23,
+            "available": true
+        }
+    ],
+    "requests": []
+}
