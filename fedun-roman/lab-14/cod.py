@@ -1,46 +1,22 @@
-# class OrderSystemBad:
-#     def __init__(self, customer_name, items):
-#         self.customer_name = customer_name
-#         self.items = items
+class Report:
+    def __init__(self, content):
+        self.content = content
 
-#     def print_order(self):
-#         print(f"****** ВИТРАТНА НАКЛАДНА (BAD) ******")
-#         print(f"Клієнт: {self.customer_name}")
-#         print("-" * 30)
+    def generate(self):
+        return f"Звіт: {self.content}"
 
-#         total_amount = 0
-#         for item in self.items:
-#             item_price = item.get('price', 0)
-#             item_qty = item.get('qty', 0)
-#             total_amount += item_price * item_qty
+class Report:
+    def __init__(self, content):
+        self.content = content
 
-#         print(f"Загальна сума до сплати: {total_amount} грн")
-#         print("***************************************")
-#         print()
+    def generate(self):
+        return f"Звіт: {self.content}"
 
+class ReportSaver:
+    def save_to_file(self, report, filename):
+        with open(filename, "w") as f:
+            f.write(report.content)
 
-class OrderSystemGood:
-    def __init__(self, customer_name, items):
-        self.customer_name = customer_name
-        self.items = items
-
-    def print_order(self):
-        self._print_header()
-        total_amount = self._calculate_total()
-        self._print_details(total_amount)
-
-    def _print_header(self):
-        print(f"****** ВИТРАТНА НАКЛАДНА (GOOD) ******")
-        print(f"Клієнт: {self.customer_name}")
-        print("-" * 30)
-
-    def _calculate_total(self) -> float:
-        total = 0
-        for item in self.items:
-            total += item.get('price', 0) * item.get('qty', 0)
-        return total
-
-    def _print_details(self, total: float):
-        print(f"Загальна сума до сплати: {total} грн")
-        print("****************************************")
-        print()
+report = Report("Sell in November")
+saver = ReportSaver()
+saver.save_to_file(report, "report.txt")
