@@ -22,80 +22,77 @@
 1. **Ознайомився з теоретичними основами поведінкових патернів.**  
    Ці патерни описують способи взаємодії об’єктів між собою, розподіляючи обов’язки між ними.
 
-2. **Реалізував патерн Observer (Спостерігач).**  
-   Цей патерн дозволяє об’єктам отримувати повідомлення про зміни стану іншого об’єкта.
-
-   ```python
-   class Observer:
-       def update(self, msg):
-           print(f"[Observer] {msg}")
-
-   class Subject:
-       def __init__(self): self.obs = []
-       def attach(self, o): self.obs.append(o)
-       def notify(self, msg):
-           for o in self.obs: o.update(msg)
-
-   s = Subject(); o1, o2 = Observer(), Observer()
-   s.attach(o1); s.attach(o2); s.notify("Подія сталася!")
-   ```
-
-3. **Реалізував патерн Strategy (Стратегія).**  
+2. **Реалізував патерн Strategy (Стратегія).**
    Дає змогу змінювати алгоритм роботи програми під час виконання.
 
-   ```python
-   class Strategy:
-       def execute(self, a, b): pass
-   class Add(Strategy):
-       def execute(self, a, b): return a + b
-   class Sub(Strategy):
-       def execute(self, a, b): return a - b
-   class Context:
-       def __init__(self, s): self.s = s
-       def set(self, s): self.s = s
-       def run(self, a, b): return self.s.execute(a, b)
+```python
+class PaymentStrategy:
+    def pay(self, amount):
+        pass
 
-   ctx = Context(Add())
-   print("10 + 5 =", ctx.run(10, 5))
-   ctx.set(Sub())
-   print("10 - 5 =", ctx.run(10, 5))
-   ```
+class CreditCardPayment(PaymentStrategy):
+    def pay(self, amount):
+        print(f"Оплата карткою: {amount} грн")
 
-4. **Реалізував патерн Command (Команда).**  
-   Інкапсулює запит у вигляді об’єкта, що дозволяє відкладати, комбінувати або скасовувати дії.
+class PayPalPayment(PaymentStrategy):
+    def pay(self, amount):
+        print(f"Оплата PayPal: {amount} грн")
+ ```
+ ```py
+#Клієнт
+class Order:
+    def __init__(self, strategy: PaymentStrategy):
+        self.strategy = strategy
 
-   ```python
-   class Command:
-       def execute(self): pass
-   class LightOn(Command):
-       def execute(self): print("Світло увімкнено")
-   class LightOff(Command):
-       def execute(self): print("Світло вимкнено")
-   class Remote:
-       def __init__(self): self.cmd = None
-       def set(self, c): self.cmd = c
-       def press(self): self.cmd.execute()
+    def checkout(self, amount):
+        self.strategy.pay(amount)
+ ```
+ ```py
+#Використання
+order = Order(CreditCardPayment())
+order.checkout(100)
 
-   r = Remote()
-   r.set(LightOn()); r.press()
-   r.set(LightOff()); r.press()
-   ```
+order.strategy = PayPalPayment()
+order.checkout(200)
+
+ ```
+
+3. **Поведінкові патерни (Behavioral).**
+   
+   Призначення: розподіляють обов’язки між об’єктами, описують алгоритми та їхню заміну під час виконання.
+
+
+5. **Приклад: Strategy (Стратегія).**  
+   Ідея:
+   алгоритми інкапсулюються в окремі класи, а клієнт може змінювати алгоритм під час виконання.
+
+   Наприклад:
+   різні методи оплати (карта, PayPal, криптовалюта);
+   різні способи сортування;
+   вибір маршрутизації.
+
+   Плюси:
+   немає величезних if/else;
+   легко додавати нові алгоритми;
+   код гнучкіший.
 
 5. **Запустив програму.**  
    Програма відпрацювала успішно:
-   ```
-   [Observer] Подія сталася!
-   [Observer] Подія сталася!
-   10 + 5 = 15
-   10 - 5 = 5
-   Світло увімкнено
-   Світло вимкнено
-   ```
+```py
+order = Order(CreditCardPayment())
+order.checkout(100)
 
+order.strategy = PayPalPayment()
+order.checkout(200)
+```
+```py
+Оплата карткою: 100 грн      
+Оплата PayPal: 200 грн
+```
 ---
 
 ## **Висновки**
 
-Під час виконання лабораторної роботи я ознайомився з трьома основними поведінковими патернами проєктування: **Observer, Strategy та Command**.  
-Реалізував їхні приклади на мові **Python 3** та перевірив коректність роботи.  
+Під час виконання лабораторної роботи я ознайомився з трьома основними поведінковими патернами проєктування: **Observer, Strategy(взятий за приклад) та Command**.  
+Реалізував  приклад на мові **Python 3** та перевірив коректність роботи.  
 Отримав практичні навички створення гнучких систем із чітким розподілом відповідальності між об’єктами.
