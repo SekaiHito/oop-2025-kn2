@@ -1,51 +1,44 @@
-# === Observer ===
-class Observer:
-    def update(self, msg):
-        print(f"[Observer] {msg}")
+# Базовий інтерфейс стратегії оплати.
+# Усі конкретні стратегії повинні реалізувати метод pay().
+class PaymentStrategy:
+    def pay(self, amount):
+        pass  # Интерфейс — тут немає логіки, лише визначення методу.
 
-class Subject:
-    def __init__(self): self.obs = []
-    def attach(self, o): self.obs.append(o)
-    def notify(self, msg):
-        for o in self.obs: o.update(msg)
 
-# === Strategy ===
-class Strategy:
-    def execute(self, a, b): pass
-class Add(Strategy):
-    def execute(self, a, b): return a + b
-class Sub(Strategy):
-    def execute(self, a, b): return a - b
-class Context:
-    def __init__(self, s): self.s = s
-    def set(self, s): self.s = s
-    def run(self, a, b): return self.s.execute(a, b)
+# Конкретна стратегія оплати карткою.
+class CreditCardPayment(PaymentStrategy):
+    def pay(self, amount):
+        # Реалізація способу оплати карткою
+        print(f"Оплата карткою: {amount} грн")
 
-# === Command ===
-class Command:
-    def execute(self): pass
-class LightOn(Command):
-    def execute(self): print("Світло увімкнено")
-class LightOff(Command):
-    def execute(self): print("Світло вимкнено")
-class Remote:
-    def __init__(self): self.cmd = None
-    def set(self, c): self.cmd = c
-    def press(self): self.cmd.execute()
 
-# === Демонстрація ===
-if __name__ == "__main__":
-    # Observer
-    s = Subject(); o1, o2 = Observer(), Observer()
-    s.attach(o1); s.attach(o2); s.notify("Подія сталася!")
+# Конкретна стратегія оплати через PayPal.
+class PayPalPayment(PaymentStrategy):
+    def pay(self, amount):
+        # Реалізація способу оплати через PayPal
+        print(f"Оплата PayPal: {amount} грн")
 
-    # Strategy
-    ctx = Context(Add())
-    print("10 + 5 =", ctx.run(10, 5))
-    ctx.set(Sub())
-    print("10 - 5 =", ctx.run(10, 5))
 
-    # Command
-    r = Remote()
-    r.set(LightOn()); r.press()
-    r.set(LightOff()); r.press()
+# Клієнтський клас — замовлення.
+# Він НЕ залежить від конкретного способу оплати.
+# Лише отримує та викликає вибрану стратегію.
+class Order:
+    def __init__(self, strategy: PaymentStrategy):
+        # Зберігаємо обрану стратегію оплати
+        self.strategy = strategy
+
+    def checkout(self, amount):
+        # Делегуємо оплату внутрішній стратегії
+        self.strategy.pay(amount)
+
+
+# --- Використання ---
+
+# Створюємо замовлення з оплатою карткою
+order = Order(CreditCardPayment())
+order.checkout(100)  # Викликається стратегія CreditCardPayment
+
+# Змінюємо стратегію на PayPal "на льоту"
+order.strategy = PayPalPayment()
+order.checkout(200)  # Викликається вже стратегія PayPalPayment
+

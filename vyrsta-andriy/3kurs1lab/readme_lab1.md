@@ -24,68 +24,61 @@
 
 2. **Реалізував патерн Singleton.**  
    Цей патерн гарантує, що в системі існує лише один екземпляр певного класу, і забезпечує глобальну точку доступу до нього.
-   ```py
-   class SingletonMeta(type):
-       _instances = {}
-       def __call__(cls, *args, **kwargs):
-           if cls not in cls._instances:
-               cls._instances[cls] = super().__call__(*args, **kwargs)
-           return cls._instances[cls]
+```py
+class Singleton:
+    # Класова змінна (спільна для всіх об'єктів класу).
+    # Тут зберігається єдиний екземпляр класу.
+    _instance = None
 
-   class Config(metaclass=SingletonMeta):
-       def __init__(self):
-           self.settings = {"theme": "dark", "lang": "uk"}
-   ```
+    def __new__(cls):
+        # __new__ викликається перед __init__ і саме він створює об'єкт у пам'яті.
+        # Перевіряємо, чи екземпляр Singleton уже існує.
+        if cls._instance is None:
+            # Якщо ще не створений — створюємо новий екземпляр через батьківський клас.
+            cls._instance = super().__new__(cls)
+        # Повертаємо вже створений або новий екземпляр.
+        # Таким чином гарантується, що завжди повертається один і той самий об'єкт.
+        return cls._instance
 
-3. **Реалізував патерн Factory Method.**  
-   Фабричний метод дозволяє створювати об’єкти без необхідності вказувати їх конкретний тип.
-   ```py
-   class Animal(ABC):
-       @abstractmethod
-       def speak(self): pass
 
-   class Dog(Animal):
-       def speak(self): return "Гав!"
+# Використання
+a = Singleton()  # перша спроба створити екземпляр → буде створено об'єкт
+b = Singleton()  # друга спроба → повертається вже той самий об'єкт
 
-   class Cat(Animal):
-       def speak(self): return "Мяу!"
+# Перевірка
+print(a is b)  # True — a і b посилаються на один і той самий екземпляр Singleton
 
-   class AnimalFactory:
-       def create_animal(self, animal_type: str) -> Animal:
-           if animal_type == "dog": return Dog()
-           elif animal_type == "cat": return Cat()
-   ```
+```
 
-4. **Реалізував патерн Abstract Factory.**  
+3. **Створюючі патерни (Creational).**  
+Призначення: контролюють створення об’єктів, роблять код гнучкішим, дозволяють відокремити логіку створення від логіки використання.
+
+4. **Singleton (Одинак).**  
    Дозволяє створювати цілі “сімейства” пов’язаних об’єктів без залежності від їх конкретних класів.
-   ```py
-   class GUIFactory(ABC):
-       @abstractmethod
-       def create_button(self): pass
+Ідея:
+у програмі існує рівно один об’єкт певного класу;
+доступ до нього відбувається через глобальну точку.
 
-   class WinFactory(GUIFactory):
-       def create_button(self):
-           return "Windows Button"
-   ```
+Навіщо використовується:
+робота з налаштуваннями;
+єдиний логер (логування всієї програми);
+підключення до БД, коли потрібен один пул.
 
-5. **Реалізував патерн Prototype.**  
-   Дозволяє створювати нові об’єкти шляхом копіювання існуючих.
-   ```py
-   class Shape:
-       def __init__(self, color, size):
-           self.color = color
-           self.size = size
-       def clone(self):
-           return copy.deepcopy(self)
-   ```
+Плюси:
+контроль над кількістю екземплярів;
+спрощений доступ.
 
-6. **Запустив програму.**  
+Мінуси:
+може порушувати принципи SOLID;
+важче тестувати (глобальний стан).
+
+5. **Запустив програму.**  
    Програма відпрацювала успішно:
-   ```
-   Singleton: True <Config {'theme': 'dark', 'lang': 'uk'}>
-   Factory Method: Гав! Мяу!
-   Abstract Factory: Windows Button
-   Prototype: <Shape color=red, size=10> <Shape color=blue, size=10>
+```py
+a = Singleton()
+b = Singleton()
+print(a is b)  # True, один екземпляр
+True
    ```
 
 ---
@@ -93,5 +86,5 @@
 ## **Висновки**
 
 Під час виконання лабораторної роботи я ознайомився з породжувальними патернами проєктування у Python.  
-Реалізував і протестував чотири основних патерни: **Singleton, Factory Method, Abstract Factory та Prototype**.  
+Реалізував і протестував  патерн: **Singleton**.  
 Отримав практичні навички у створенні гнучких архітектур програмного забезпечення.

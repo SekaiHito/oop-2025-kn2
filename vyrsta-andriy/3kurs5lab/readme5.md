@@ -48,52 +48,28 @@
 
 ### ❌ До рефакторингу
 ```python
-class Order:
-    def __init__(self, items):
-        self.items = items  # список (назва, кількість, ціна)
+def calculate_area(width, height):
+    area = width * height
+    print("Площа:", area)
+    return area
 
-    def print_invoice(self):
-        total = 0
-        print("=== РАХУНОК ===")
-        for name, qty, price in self.items:
-            subtotal = qty * price
-            print(f"{name}: {qty} x {price} = {subtotal}")
-            total += subtotal
-        print("----------------")
-        print(f"Разом: {total} грн")
 ```
-У цьому коді клас **Order** виконує одразу кілька дій:  
-- підраховує суму замовлення,  
-- формує текст рахунку,  
-- виводить його на екран.  
-
-Це порушує принцип єдиної відповідальності (SRP) і створює «запах коду» **Long Method (довгий метод)**.
-
 ---
 
 ### ✅ Після рефакторингу
 ```python
-class OrderRefactored:
-    def __init__(self, items):
-        self.items = items
 
-    def calculate_total(self):
-        return sum(qty * price for _, qty, price in self.items)
+def calculate_area(width, height):
+    return width * height
 
-    def generate_invoice_text(self):
-        lines = ["=== РАХУНОК ==="]
-        for name, qty, price in self.items:
-            lines.append(f"{name}: {qty} x {price} = {qty * price}")
-        lines.append("----------------")
-        lines.append(f"Разом: {self.calculate_total()} грн")
-        return "\n".join(lines)
+def print_area(width, height):
+    area = calculate_area(width, height)
+    print("Площа:", area)
 
-    def print_invoice(self):
-        print(self.generate_invoice_text())
 ```
 
 **Результат:**  
-- Логіка розділена на три короткі методи.  
+ 
 - Кожен метод має одну чітку відповідальність.  
 - Код став зрозумілішим, легше тестується та розширюється.
 
@@ -104,19 +80,6 @@ class OrderRefactored:
 Виправлення: застосування техніки **Extract Method** — розділення великого методу на менші з чіткими завданнями.
 
 ---
-
-## **Результат виконання програми**
-```
-=== РАХУНОК ===
-Хліб: 2 x 25 = 50
-Молоко: 1 x 35 = 35
-Сир: 1 x 80 = 80
-----------------
-Разом: 165 грн
-```
-
----
-
 ## **Висновки**
 У ході виконання лабораторної роботи я ознайомився з поняттям рефакторингу, його принципами  
 та основними техніками. На практиці застосував техніку **Extract Method**,  
